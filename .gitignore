@@ -1,0 +1,112 @@
+**/*.log
+**/*.pmd
+**/*.iml
+*.project
+
+**/logs/
+
+#### Maven ####
+target/
+dependency-reduced-pom.xml
+
+
+#### Gradle ####
+**/.gradle
+**/build/
+**/bin/
+**/target/
+**/log/
+**/.log
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# Checkstyle
+**/.checkstyle
+
+#### Eclipse ####
+.metadata
+**/bin/
+**/tmp/
+**/*.tmp
+**/*.bak
+**/*.swp
+**/*~.nib
+**/local.properties
+**/*.settings
+**/*.loadpath
+**/*.recommenders
+
+# Eclipse Core
+**/*.project
+
+# External tool builders
+**/.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+**/*.launch
+
+# JDT-specific (Eclipse Java Development Tools)
+**/.classpath
+
+# Java annotation processor (APT)
+**/.factorypath
+
+# sbteclipse plugin
+**/.target
+
+# STS (Spring Tool Suite)
+**/.springBeans
+
+# IntelliJ IDEA
+**/out/
+**/*.idea
+**/*.iml
+**/*.ipr
+**/*.iws
+
+
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
