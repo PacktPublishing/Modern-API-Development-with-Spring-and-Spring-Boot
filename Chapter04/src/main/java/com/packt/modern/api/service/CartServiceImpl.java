@@ -24,33 +24,28 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class CartServiceImpl implements CartService {
+
   private CartRepository repository;
   private UserRepository userRepo;
   private ItemService itemService;
 
-  public CartServiceImpl(CartRepository repository, UserRepository userRepo, ItemService itemService) {
+  public CartServiceImpl(CartRepository repository, UserRepository userRepo,
+      ItemService itemService) {
     this.repository = repository;
     this.userRepo = userRepo;
     this.itemService = itemService;
   }
+
   @Override
   public List<Item> addCartItemsByCustomerId(String customerId, @Valid Item item) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
+    CartEntity entity = getCartByCustomerId(customerId);
     entity.getItems().add(itemService.toEntity(item));
     return itemService.toModelList(repository.save(entity).getItems());
   }
 
   @Override
   public List<Item> addOrReplaceItemsByCustomerId(String customerId, @Valid Item item) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
+    CartEntity entity = getCartByCustomerId(customerId);
     List<ItemEntity> items = Collections.emptyList();
     items.addAll(entity.getItems());
     AtomicReference<Boolean> isItemSaved = new AtomicReference<>(Boolean.FALSE);
@@ -69,21 +64,14 @@ public class CartServiceImpl implements CartService {
 
   @Override
   public void deleteCart(String customerId) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
+    // will throw the error if doesn't exist
+    CartEntity entity = getCartByCustomerId(customerId);
     repository.deleteById(entity.getId());
   }
 
   @Override
   public void deleteItemFromCart(String customerId, String itemId) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
+    CartEntity entity = getCartByCustomerId(customerId);
     List<ItemEntity> updatedItems = entity.getItems().stream()
         .filter(i -> !i.getProduct().getId().equals(UUID.fromString(itemId))).collect(toList());
     entity.setItems(updatedItems);
@@ -94,30 +82,22 @@ public class CartServiceImpl implements CartService {
   public CartEntity getCartByCustomerId(String customerId) {
     CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
     if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
+      entity.setUser(userRepo.findById(UUID.fromString(customerId))
+          .orElseThrow(() -> new CustomerNotFoundException(
+              String.format(" - %s", customerId))));
     }
     return entity;
   }
 
   @Override
   public List<Item> getCartItemsByCustomerId(String customerId) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
-    entity.setItems(Collections.emptyList());
-    return itemService.toModelList(repository.save(entity).getItems());
+    CartEntity entity = getCartByCustomerId(customerId);
+    return itemService.toModelList(entity.getItems());
   }
 
   @Override
   public Item getCartItemsByItemId(String customerId, String itemId) {
-    CartEntity entity = repository.findByCustomerId(customerId).orElse(new CartEntity());
-    if (Objects.isNull(entity.getUser())) {
-      entity.setUser(userRepo.findById(UUID.fromString(customerId)).orElseThrow(() -> new CustomerNotFoundException(
-          String.format(" - %s", customerId))));
-    }
+    CartEntity entity = getCartByCustomerId(customerId);
     AtomicReference<ItemEntity> itemEntity = null;
     entity.getItems().forEach(i -> {
       if (i.getProduct().getId().equals(UUID.fromString(itemId))) {

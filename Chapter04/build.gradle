@@ -30,6 +30,7 @@ swaggerSources {
             rawOptions = ['--ignore-file-override', ignoreFile, '--type-mappings',
                           typeMappings, '--import-mappings', importMappings] as List<String>
             components = [models: true, apis: true, supportingFiles: 'ApiUtil.java']
+            //templateDir = file("${rootDir}/src/main/resources/templates")
             //dependsOn validation // Should be uncommented once plugin starts supporting OA 3 validation
         }
     }

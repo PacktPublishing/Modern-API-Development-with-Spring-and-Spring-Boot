@@ -5,11 +5,9 @@ import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,15 +27,15 @@ public class ItemEntity {
   @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
   private ProductEntity product;
 
-  @Column(name = "PRICE")
+  @Column(name = "UNIT_PRICE")
   private BigDecimal price;
 
   @Column(name = "QUANTITY")
   private int quantity;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "cart_id")
-  private CardEntity cart;
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "CART_ID", referencedColumnName = "ID")
+//  private CartEntity cart;
 
   public UUID getId() {
     return id;
@@ -75,14 +73,14 @@ public class ItemEntity {
     return this;
   }
 
-  public CardEntity getCart() {
+/*  public CartEntity getCart() {
     return cart;
   }
 
-  public ItemEntity setCart(CardEntity cart) {
+  public ItemEntity setCart(CartEntity cart) {
     this.cart = cart;
     return this;
-  }
+  }*/
 
   @Override
   public boolean equals(Object o) {
@@ -94,11 +92,11 @@ public class ItemEntity {
     }
     ItemEntity that = (ItemEntity) o;
     return quantity == that.quantity && product.equals(that.product) && Objects
-        .equals(price, that.price) && Objects.equals(cart, that.cart);
+        .equals(price, that.price);// && Objects.equals(cart, that.cart);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(product, price, quantity, cart);
+    return Objects.hash(product, price, quantity);//, cart);
   }
 }
