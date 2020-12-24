@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+  <property name="LOG_PATTERN"
+    value="%d{yyyy-MM-dd HH:mm:ss.SSS}
+    %5p [${applicationName},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]
+    [%mdc{env:-null}] [%mdc{tenant:-null}] [%mdc{user:-null}]
+    [%mdc{branch:-null}] ${PID:- } --- [%15.15t] %-40.40logger{39} : %msg%n"/>
+  <property name="LOG_DIR" value="${chapter05.service.logging.path:-chapter05-logs}"/>
+  <property name="SERVICE_ENV" value="${service.env:-dev}"/>
+  <property name="LOG_BASE_PATH" value="${LOG_DIR}/${SERVICE_ENV}"/>
+  <property name="MAX_FILE_SIZE" value="${chapter05.service.logging.rolling.maxFileSize:-100MB}"/>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>utf8</charset>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_BASE_PATH}/${applicationName}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_BASE_PATH}/archive/${applicationName}.%d{yyyy-MM-dd}-%i.log.gz
+      </fileNamePattern>
+      <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+      <!-- <maxHistory>30</maxHistory>
+      <totalSizeCap>3GB</totalSizeCap> -->
+    </rollingPolicy>
+    <encoder>
+      <charset>utf8</charset>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.springframework.r2dbc" level="debug" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+  <logger name="reactor.core" level="debug" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+  <logger name="io.r2dbc.h2" level="debug" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="FILE"/>
+  </root>
+
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+</configuration>
