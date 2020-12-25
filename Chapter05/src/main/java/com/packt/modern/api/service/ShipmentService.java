@@ -9,5 +9,5 @@ import reactor.core.publisher.Flux;
  * @project : Chapter05 - Modern API Development with Spring and Spring Boot
  **/
 public interface ShipmentService {
-  public Flux<ShipmentEntity> getShipmentByOrderId(@Min(value = 1L, message = "Invalid product ID.")  String id);
+  Flux<ShipmentEntity> getShipmentByOrderId(@Min(value = 1L, message = "Invalid product ID.")  String id);
 }

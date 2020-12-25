@@ -13,13 +13,13 @@ import reactor.core.publisher.Mono;
  **/
 public interface CartService {
 
-  public Flux<Item> addCartItemsByCustomerId(CartEntity cartEntity, @Valid Mono<Item> item);
+  Flux<Item> addCartItemsByCustomerId(CartEntity cartEntity, @Valid Mono<Item> item);
 
-  public Flux<Item> addOrReplaceItemsByCustomerId(CartEntity cartEntity, @Valid Mono<Item> newItem);
+  Flux<Item> addOrReplaceItemsByCustomerId(CartEntity cartEntity, @Valid Mono<Item> newItem);
 
-  public Mono<Void> deleteCart(String customerId, String cartId);
+  Mono<Void> deleteCart(String customerId, String cartId);
 
-  public Mono<Void> deleteItemFromCart(CartEntity cartEntity, String itemId);
+  Mono<Void> deleteItemFromCart(CartEntity cartEntity, String itemId);
 
-  public Mono<CartEntity> getCartByCustomerId(String customerId);
+  Mono<CartEntity> getCartByCustomerId(String customerId);
 }

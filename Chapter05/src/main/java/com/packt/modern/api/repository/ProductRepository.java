@@ -12,6 +12,4 @@ import reactor.core.publisher.Mono;
  **/
 public interface ProductRepository extends ReactiveCrudRepository<ProductEntity, UUID> {
 
-  /*@Query("SELECT p.*, t.name as tags FROM ecomm.product p, ecomm.tag t, ecomm.product_tag pt where p.id = :id and p.id=pt.product_id and t.id = pt.tag_id")
-  Mono<ProductEntity> getProduct(String id);*/
 }

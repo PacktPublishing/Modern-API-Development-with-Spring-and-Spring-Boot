@@ -17,9 +17,9 @@ import reactor.core.publisher.Mono;
 public interface UserRepository extends ReactiveCrudRepository<UserEntity, UUID> {
 
   @Query("SELECT a.* FROM ecomm.user u, ecomm.address a, ecomm.user_address ua where u.id=ua.user_id and a.id=ua.address_id and u.id = :id")
-  public Flux<AddressEntity> getAddressesByCustomerId(String id);
+  Flux<AddressEntity> getAddressesByCustomerId(String id);
 
   @Query("SELECT c.* FROM ecomm.user u, ecomm.card c where u.id=c.user_id and u.id = :id")
-  public Mono<CardEntity> findCardByCustomerId(String id);
+  Mono<CardEntity> findCardByCustomerId(String id);
 }
 

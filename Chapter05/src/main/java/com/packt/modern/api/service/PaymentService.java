@@ -13,6 +13,6 @@ import reactor.core.publisher.Mono;
  **/
 public interface PaymentService {
 
-  public Mono<AuthorizationEntity> authorize(@Valid Mono<PaymentReq> paymentReq);
-  public Mono<AuthorizationEntity> getOrdersPaymentAuthorization(@NotNull String orderId);
+  Mono<AuthorizationEntity> authorize(@Valid Mono<PaymentReq> paymentReq);
+  Mono<AuthorizationEntity> getOrdersPaymentAuthorization(@NotNull String orderId);
 }

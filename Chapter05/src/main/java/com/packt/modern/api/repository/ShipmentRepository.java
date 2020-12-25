@@ -13,6 +13,6 @@ import reactor.core.publisher.Flux;
 public interface ShipmentRepository extends ReactiveCrudRepository<ShipmentEntity, UUID> {
 
   @Query("SELECT s.* FROM ecomm.order o, ecomm.shipment s where o.shipment_id=s.id and o.id = :id")
-  public Flux<ShipmentEntity> getShipmentByOrderId(String id);
+  Flux<ShipmentEntity> getShipmentByOrderId(String id);
 }
 
