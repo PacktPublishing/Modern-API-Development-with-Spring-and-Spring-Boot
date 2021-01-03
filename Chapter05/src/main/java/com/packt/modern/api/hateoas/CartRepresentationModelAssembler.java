@@ -55,7 +55,7 @@ public class CartRepresentationModelAssembler implements
     if(Objects.isNull(entity)) {
       return resource;
     }
-    resource.customerId(entity.getUser().getId().toString()).items(itemfromEntities(entity.getItems()));
+    resource.id(entity.getId().toString()).customerId(entity.getUser().getId().toString()).items(itemfromEntities(entity.getItems()));
     String serverUri = getServerUri(exchange);
     resource
         .add(Link.of(String.format("%s/api/v1/carts/%s", serverUri, entity.getId())).withSelfRel());

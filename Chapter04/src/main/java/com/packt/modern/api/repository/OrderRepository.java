@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends CrudRepository<OrderEntity, UUID>, OrderRepositoryExt {
 
   @Query("select o from OrderEntity o join o.userEntity u where u.id = :customerId")
-  public Iterable<OrderEntity> findByCustomerId(@Param("customerId") String customerId);
+  public Iterable<OrderEntity> findByCustomerId(@Param("customerId") UUID customerId);
 }
 

@@ -9,10 +9,14 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,7 +27,7 @@ import javax.persistence.Table;
  * @project : Chapter04 - Modern API Development with Spring and Spring Boot
  **/
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class OrderEntity {
   @Id
   @GeneratedValue
@@ -34,32 +38,33 @@ public class OrderEntity {
   private BigDecimal total;
 
   @Column(name = "STATUS")
+  @Enumerated(EnumType.STRING)
   private StatusEnum status;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name="CUSTOMER_ID", nullable=false)
   private UserEntity userEntity;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID", insertable=false, updatable=false)
   private AddressEntity addressEntity;
 
   @OneToOne(cascade = CascadeType.ALL )
   @JoinColumn(name = "PAYMENT_ID", referencedColumnName = "ID")
   private PaymentEntity paymentEntity;
 
-  @Column(name = "SHIPMENT_ID")
-  @OneToMany
-  private List<ShipmentEntity> shipments = Collections.emptyList();
+  @JoinColumn(name = "SHIPMENT_ID", referencedColumnName = "ID")
+  @OneToOne
+  private ShipmentEntity shipment;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "CARD_ID", referencedColumnName = "ID")
   private CardEntity cardEntity;
 
   @Column(name = "ORDER_DATE")
   private Timestamp orderDate;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinTable(
       name = "ORDER_ITEM",
       joinColumns = @JoinColumn(name = "ORDER_ID"),
@@ -124,12 +129,12 @@ public class OrderEntity {
     return this;
   }
 
-  public List<ShipmentEntity> getShipments() {
-    return shipments;
+  public ShipmentEntity getShipments() {
+    return shipment;
   }
 
-  public OrderEntity setShipments(List<ShipmentEntity> shipments) {
-    this.shipments = shipments;
+  public OrderEntity setShipments(ShipmentEntity shipment) {
+    this.shipment = shipment;
     return this;
   }
 
@@ -168,5 +173,22 @@ public class OrderEntity {
       AuthorizationEntity authorizationEntity) {
     this.authorizationEntity = authorizationEntity;
     return this;
+  }
+
+  @Override
+  public String toString() {
+    return "OrderEntity{" +
+        "id=" + id +
+        ", total=" + total +
+        ", status=" + status +
+        ", userEntity=" + userEntity +
+        ", addressEntity=" + addressEntity +
+        ", paymentEntity=" + paymentEntity +
+        ", shipment=" + shipment +
+        ", cardEntity=" + cardEntity +
+        ", orderDate=" + orderDate +
+        ", items=" + items +
+        ", authorizationEntity=" + authorizationEntity +
+        '}';
   }
 }

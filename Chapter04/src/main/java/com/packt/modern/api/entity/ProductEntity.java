@@ -51,8 +51,8 @@ public class ProductEntity {
   )
   private List<TagEntity> tags = Collections.emptyList();;
 
-  @OneToOne(mappedBy = "product")
-  private ItemEntity item;
+  @OneToMany(mappedBy = "product")
+  private List<ItemEntity> items;
 
   public ProductEntity(UUID id, @NotNull(message = "Product name is required.") String name,
       String description, BigDecimal price, int count, String imageUrl) {
@@ -130,12 +130,12 @@ public class ProductEntity {
     return this;
   }
 
-  public ItemEntity getItem() {
-    return item;
+  public List<ItemEntity> getItem() {
+    return items;
   }
 
-  public ProductEntity setItem(ItemEntity item) {
-    this.item = item;
+  public ProductEntity setItem(List<ItemEntity> item) {
+    this.items = item;
     return this;
   }
 }

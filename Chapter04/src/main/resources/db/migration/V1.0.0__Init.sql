@@ -1,7 +1,7 @@
 create schema if not exists ecomm;
 
 create TABLE IF NOT EXISTS ecomm.product (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	name varchar(56) NOT NULL,
 	description varchar(200),
 	price numeric(16, 4) DEFAULT 0 NOT NULL,
@@ -11,13 +11,13 @@ create TABLE IF NOT EXISTS ecomm.product (
 );
 
 create TABLE IF NOT EXISTS ecomm.tag (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	name varchar(20),
 	PRIMARY KEY(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.product_tag (
-	product_id uuid NOT NULL,
+	product_id uuid NOT NULL DEFAULT random_uuid(),
 	tag_id uuid NOT NULL,
 	FOREIGN KEY (product_id)
 		REFERENCES product(id),
@@ -75,7 +75,7 @@ insert into ecomm.product_tag values ('837ab141-399e-4c1f-9abc-bace40296bac', '0
 insert into ecomm.product_tag values ('837ab141-399e-4c1f-9abc-bace40296bac', '00000000-b5c6-4896-987c-f30f3678f601');
 
 create TABLE IF NOT EXISTS ecomm.user (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	username varchar(16),
 	password varchar(40),
 	first_name varchar(16),
@@ -87,10 +87,10 @@ create TABLE IF NOT EXISTS ecomm.user (
 );
 
 create TABLE IF NOT EXISTS ecomm.address (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	number varchar(24),
-	residency varchar(24),
-	street varchar(24),
+	residency varchar(32),
+	street varchar(32),
 	city varchar(24),
 	state varchar(24),
 	country varchar(24),
@@ -99,7 +99,7 @@ create TABLE IF NOT EXISTS ecomm.address (
 );
 
 create TABLE IF NOT EXISTS ecomm.user_address (
-	user_id uuid NOT NULL,
+	user_id uuid NOT NULL DEFAULT random_uuid(),
 	address_id uuid NOT NULL,
 	FOREIGN KEY (user_id)
 		REFERENCES ecomm.user(id),
@@ -108,37 +108,37 @@ create TABLE IF NOT EXISTS ecomm.user_address (
 );
 
 create TABLE IF NOT EXISTS ecomm.payment (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	authorized boolean,
 	message varchar(64),
 	PRIMARY KEY(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.card (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	number varchar(16),
-	user_id uuid NOT NULL,
+	user_id uuid NOT NULL UNIQUE,
 	last_name varchar(16),
 	expires varchar(5),
-	ccv numeric(4,0),
+	cvv varchar(4),
 	FOREIGN KEY(user_id)
 		REFERENCES ecomm.user(id),
 	PRIMARY KEY(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.shipment (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	est_delivery_date timestamp,
 	carrier varchar(24),
 	PRIMARY KEY(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.orders (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	customer_id uuid NOT NULL,
 	address_id uuid NOT NULL,
 	card_id uuid,
-	orderDate timestamp,
+	order_date timestamp,
 	total numeric(16, 4) DEFAULT 0 NOT NULL,
 	payment_id uuid,
 	shipment_id uuid,
@@ -158,7 +158,7 @@ create TABLE IF NOT EXISTS ecomm.orders (
 );
 
 create TABLE IF NOT EXISTS ecomm.item (
-	id uuid NOT NULL,
+	id uuid NOT NULL DEFAULT random_uuid(),
 	product_id uuid NOT NULL,
 	quantity numeric(8, 0),
 	unit_price numeric(16, 4) NOT NULL,
@@ -168,6 +168,7 @@ create TABLE IF NOT EXISTS ecomm.item (
 );
 
 create TABLE IF NOT EXISTS ecomm.order_item (
+  id uuid NOT NULL DEFAULT random_uuid(),
 	order_id uuid NOT NULL,
 	item_id uuid NOT NULL,
 	FOREIGN KEY (order_id)
@@ -177,8 +178,8 @@ create TABLE IF NOT EXISTS ecomm.order_item (
 );
 
 create TABLE IF NOT EXISTS ecomm.authorization (
-  id uuid NOT NULL,
-	order_id uuid NOT NULL,
+  id uuid NOT NULL DEFAULT random_uuid(),
+	order_id uuid NOT NULL DEFAULT random_uuid(),
 	authorized boolean,
 	time timestamp,
 	message varchar(16),
@@ -189,20 +190,37 @@ create TABLE IF NOT EXISTS ecomm.authorization (
 );
 
 create TABLE IF NOT EXISTS ecomm.cart (
-  id uuid NOT NULL,
-	user_id uuid NOT NULL,
+  id uuid NOT NULL DEFAULT random_uuid(),
+	user_id uuid NOT NULL DEFAULT random_uuid(),
 	FOREIGN KEY (user_id)
 		REFERENCES ecomm.user(id),
 	PRIMARY KEY(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.cart_item (
-	cart_id uuid NOT NULL,
-	item_id uuid NOT NULL,
+	cart_id uuid NOT NULL DEFAULT random_uuid(),
+	item_id uuid NOT NULL DEFAULT random_uuid(),
 	FOREIGN KEY (cart_id)
 		REFERENCES ecomm.cart(id),
 	FOREIGN KEY(item_id)
 		REFERENCES ecomm.item(id)
 );
 
-
+insert into ecomm.user (id, username, password, first_name, last_name, email, phone, user_status) values('a1b9b31d-e73c-4112-af7c-b68530f38222', 'test', 'pwd', 'Test', 'User', 'test@user.com', '234234234', 'ACTIVE');
+insert into ecomm.user (id, username, password, first_name, last_name, email, phone, user_status) values('a1b9b31d-e73c-4112-af7c-b68530f38223', 'test', 'pwd', 'Test2', 'User2', 'test2@user.com', '234234234', 'ACTIVE');
+INSERT INTO ecomm.address VALUES ('a731fda1-aaad-42ea-bdbc-a27eeebe2cc0', '9I-999', 'Fraser Suites Le Claridge', 'Champs-Elysees', 'Paris', 'Île-de-France', 'France', '75008');
+insert into ecomm.user_address values ('a1b9b31d-e73c-4112-af7c-b68530f38222', 'a731fda1-aaad-42ea-bdbc-a27eeebe2cc0');
+INSERT INTO ecomm.card VALUES ('618ffaff-cbcd-48d4-8848-a15601e6725b', '999-999-999-999', 'a1b9b31d-e73c-4112-af7c-b68530f38222', 'User', '12/28', '0000');
+insert into ecomm.cart values ('cacab31d-e73c-4112-af7c-b68530f38222', 'a1b9b31d-e73c-4112-af7c-b68530f38222');
+insert into ecomm.cart values ('cacab31d-e73c-4112-af7c-b68530f38223', 'a1b9b31d-e73c-4112-af7c-b68530f38223');
+insert into ecomm.item values('a7384042-e4aa-4c93-85ae-31a346dad702', '6d62d909-f957-430e-8689-b5129c0bb75e', 1, 17.15);
+insert into ecomm.cart_item values ('cacab31d-e73c-4112-af7c-b68530f38222', 'a7384042-e4aa-4c93-85ae-31a346dad702');
+insert into ecomm.item values('a7384042-e4aa-4c93-85ae-31a346dad703', 'd3588630-ad8e-49df-bbd7-3167f7efb246', 1, 10.99);
+insert into ecomm.cart_item values ('cacab31d-e73c-4112-af7c-b68530f38222', 'a7384042-e4aa-4c93-85ae-31a346dad703');
+insert into ecomm.orders(id, customer_id, address_id, card_id, order_date, total, payment_id, shipment_id, status) values ('0a59ba9f-629e-4445-8129-b9bce1985d6a','a1b9b31d-e73c-4112-af7c-b68530f38222', 'a731fda1-aaad-42ea-bdbc-a27eeebe2cc0', '618ffaff-cbcd-48d4-8848-a15601e6725b', current_timestamp, 38.14, NULL, NULL, 'CREATED');
+INSERT INTO ecomm.item VALUES
+  ('a7384042-e4aa-4c93-85ae-31a346dad704', '6d62d909-f957-430e-8689-b5129c0bb75e', 1, 17.15),
+  ('a7384042-e4aa-4c93-85ae-31a346dad705', '3395a42e-2d88-40de-b95f-e00e1502085b', 1, 20.99);
+INSERT INTO ecomm.order_item VALUES
+  ('66682caa-a6d8-46ed-a173-ff822f754e1c', '0a59ba9f-629e-4445-8129-b9bce1985d6a', 'a7384042-e4aa-4c93-85ae-31a346dad704'),
+  ('efeefa71-2760-412a-9ec8-0a040d90f02c', '0a59ba9f-629e-4445-8129-b9bce1985d6a', 'a7384042-e4aa-4c93-85ae-31a346dad705');

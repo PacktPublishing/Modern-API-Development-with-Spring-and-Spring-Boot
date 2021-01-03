@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Optional<CardEntity> getCardByCustomerId(String id) {
-    return repository.findById(UUID.fromString(id)).map(UserEntity::getCard);
+    return Optional.of(repository.findById(UUID.fromString(id)).map(UserEntity::getCard).get().get(0));
   }
 
   @Override

@@ -698,7 +698,7 @@ paths:
       operationId: getShipmentByOrderId
       parameters:
         - name: id
-          in: query
+          in: path
           description: Order Identifier
           required: true
           schema:
@@ -797,6 +797,9 @@ components:
       description: Shopping Cart of the user
       type: object
       properties:
+        id:
+          description: Cart Identifier
+          type: string
         customerId:
           description: Id of the customer who possesses the cart
           type: string
@@ -911,10 +914,9 @@ components:
         expires:
           description: Expiration date
           type: string
-        ccv:
-          description: CCV code
-          type: integer
-          format: int32
+        cvv:
+          description: CVV code
+          type: string
         userId:
           type: string
       xml:
@@ -995,17 +997,15 @@ components:
         phone:
           type: string
         userStatus:
-          type: integer
-          description: User Status
-          format: int32
+          type: string
       xml:
         name: User
     NewOrder:
       description: Contains the new order request information
       type: object
       properties:
-        customer:
-          $ref: '#/components/schemas/User'
+        customerId:
+          type: string
         address:
           $ref: '#/components/schemas/Address'
         card:
@@ -1098,6 +1098,15 @@ components:
         tag:
           description: Tags associated with the product
           type: array
-          uniqueItems: true
           items:
-            type: string
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      description: Tag information
+      type: object
+      properties:
+        id:
+          description: Tag identifier
+          type: string
+        name:
+          description: Tag Name
+          type: string

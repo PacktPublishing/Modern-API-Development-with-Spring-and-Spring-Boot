@@ -1,10 +1,13 @@
 package com.packt.modern.api.entity;
 
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -41,8 +44,8 @@ public class AddressEntity {
   @Column(name = "PINCODE")
   private String pincode;
 
-  @OneToOne(mappedBy = "addressEntity")
-  private OrderEntity orderEntity;
+  @OneToMany(mappedBy = "addressEntity", fetch = FetchType.LAZY, orphanRemoval = true)
+  private List<OrderEntity> orders;
 
   public UUID getId() {
     return id;
@@ -113,6 +116,15 @@ public class AddressEntity {
 
   public AddressEntity setPincode(String pincode) {
     this.pincode = pincode;
+    return this;
+  }
+
+  public List<OrderEntity> getOrders() {
+    return orders;
+  }
+
+  public AddressEntity setOrders(List<OrderEntity> orders) {
+    this.orders = orders;
     return this;
   }
 }

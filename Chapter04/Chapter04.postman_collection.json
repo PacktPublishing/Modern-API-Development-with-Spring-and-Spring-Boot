@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3b691a3f-a6bd-4380-9e26-8af33ed2cf22",
-		"name": "Chapter05",
+		"_postman_id": "053d69f7-82bb-4a88-87cc-dc27e1d30f83",
+		"name": "Chapter04",
 		"description": "Chapter 04 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -293,7 +293,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"id\": \"1\",\r\n    \"quantity\": 1,\r\n    \"unitPrice\": 2.5\r\n}",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -1178,7 +1178,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customerId\": \"a1b9b31d-e73c-4112-af7c-b68530f38222\",\r\n    \"address\": {\r\n        \"id\": \"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0\",\r\n        \"cardId\": \"618ffaff-cbcd-48d4-8848-a15601e6725b\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"customerId\": \"a1b9b31d-e73c-4112-af7c-b68530f38222\",\r\n    \"address\": {\r\n        \"id\": \"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0\"\r\n    },\r\n    \"card\": {\r\n        \"id\": \"618ffaff-cbcd-48d4-8848-a15601e6725b\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

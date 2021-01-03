@@ -2,27 +2,30 @@ package com.packt.modern.api.entity;
 
 import java.util.Objects;
 import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * @author : github.com/sharmasourabh
  * @project : Chapter05 - Modern API Development with Spring and Spring Boot
  **/
-
-@Table("ecomm.order_item")
+@Entity
+@Table(name = "order_item")
 public class OrderItemEntity {
 
   @Id
-  @Column("id")
+  @GeneratedValue
+  @Column(name = "ID", updatable = false, nullable = false)
   private UUID id;
 
-  @Column("order_id")
+  @Column(name = "order_id")
   private UUID orderId;
 
-  @Column("item_id")
+  @Column(name = "item_id")
   private UUID itemId;
 
   public UUID getId() {

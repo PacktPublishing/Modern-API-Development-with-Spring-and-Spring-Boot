@@ -13,5 +13,5 @@ import org.springframework.data.repository.query.Param;
  **/
 public interface CartRepository extends CrudRepository<CartEntity, UUID> {
   @Query("select c from CartEntity c join c.user u where u.id = :customerId")
-  public Optional<CartEntity> findByCustomerId(@Param("customerId") String customerId);
+  public Optional<CartEntity> findByCustomerId(@Param("customerId") UUID customerId);
 }

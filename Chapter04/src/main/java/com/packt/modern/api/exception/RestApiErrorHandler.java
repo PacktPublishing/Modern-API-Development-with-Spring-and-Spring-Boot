@@ -197,4 +197,17 @@ public class RestApiErrorHandler {
         .setTimestamp(Instant.now());
     return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
   }
+
+  @ExceptionHandler(GenericAlreadyExistsException.class)
+  public ResponseEntity<Error> handleGenericAlreadyExistsException(HttpServletRequest request,
+      GenericAlreadyExistsException ex, Locale locale) {
+    Error error = ErrorUtils
+        .createError(
+            String.format("%s %s", ErrorCode.GENERIC_ALREADY_EXISTS.getErrMsgKey(), ex.getMessage()),
+            ex.getErrorCode(),
+            HttpStatus.NOT_ACCEPTABLE.value()).setUrl(request.getRequestURL().toString())
+        .setReqMethod(request.getMethod())
+        .setTimestamp(Instant.now());
+    return new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
+  }
 }

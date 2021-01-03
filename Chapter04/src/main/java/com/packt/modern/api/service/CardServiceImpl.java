@@ -41,6 +41,8 @@ public class CardServiceImpl implements CardService {
 
   @Override
   public Optional<CardEntity> registerCard(@Valid AddCardReq addCardReq) {
+    // add validation to make sure that only single card exists from one user
+    // else it throw DataIntegrityViolationException for user_id (unique)
     return Optional.of(repository.save(toEntity(addCardReq)));
   }
 
@@ -48,7 +50,7 @@ public class CardServiceImpl implements CardService {
     CardEntity e = new CardEntity();
     Optional<UserEntity> user = userRepo.findById(UUID.fromString(m.getUserId()));
     user.ifPresent(u -> e.setUser(u));
-    return e.setNumber(m.getCardNumber()).setCvv(m.getCcv())
+    return e.setNumber(m.getCardNumber()).setCvv(m.getCvv())
         .setExpires(m.getExpires());
   }
 }

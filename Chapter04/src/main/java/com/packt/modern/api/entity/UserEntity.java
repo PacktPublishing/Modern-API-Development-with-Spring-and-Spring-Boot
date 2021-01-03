@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -59,11 +60,14 @@ public class UserEntity {
   )
   private List<AddressEntity> addresses = Collections.emptyList();;
 
-  @OneToOne(mappedBy = "user")
-  private CardEntity card;
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
+  private List<CardEntity> cards;
 
-  @OneToOne(mappedBy = "user")
+  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
   private CartEntity cart;
+
+  @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, orphanRemoval = true)
+  private List<OrderEntity> orders;
 
   public UUID getId() {
     return id;
@@ -147,12 +151,12 @@ public class UserEntity {
     return this;
   }
 
-  public CardEntity getCard() {
-    return card;
+  public List<CardEntity> getCard() {
+    return cards;
   }
 
-  public UserEntity setCard(CardEntity card) {
-    this.card = card;
+  public UserEntity setCard(List<CardEntity> card) {
+    this.cards = card;
     return this;
   }
 
@@ -162,6 +166,15 @@ public class UserEntity {
 
   public UserEntity setCart(CartEntity cart) {
     this.cart = cart;
+    return this;
+  }
+
+  public List<OrderEntity> getOrder() {
+    return orders;
+  }
+
+  public UserEntity setOrder(List<OrderEntity> order) {
+    this.orders = order;
     return this;
   }
 }

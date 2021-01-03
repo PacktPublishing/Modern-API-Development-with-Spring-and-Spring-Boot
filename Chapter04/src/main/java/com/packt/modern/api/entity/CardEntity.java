@@ -1,11 +1,14 @@
 package com.packt.modern.api.entity;
 
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,14 +31,14 @@ public class CardEntity {
   private String expires;
 
   @Column(name = "CVV")
-  private int cvv;
+  private String cvv;
 
   @OneToOne
   @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
   private UserEntity user;
 
-  @OneToOne(mappedBy = "cardEntity")
-  private OrderEntity orderEntity;
+  @OneToMany(mappedBy = "cardEntity", fetch = FetchType.LAZY, orphanRemoval = true)
+  private List<OrderEntity> orders;
 
   public UUID getId() {
     return id;
@@ -64,11 +67,11 @@ public class CardEntity {
     return this;
   }
 
-  public int getCvv() {
+  public String getCvv() {
     return cvv;
   }
 
-  public CardEntity setCvv(int cvv) {
+  public CardEntity setCvv(String cvv) {
     this.cvv = cvv;
     return this;
   }
@@ -82,12 +85,12 @@ public class CardEntity {
     return this;
   }
 
-  public OrderEntity getOrderEntity() {
-    return orderEntity;
+  public List<OrderEntity> getOrderEntity() {
+    return orders;
   }
 
-  public CardEntity setOrderEntity(OrderEntity orderEntity) {
-    this.orderEntity = orderEntity;
+  public CardEntity setOrderEntity(List<OrderEntity> orders) {
+    this.orders = orders;
     return this;
   }
 }
