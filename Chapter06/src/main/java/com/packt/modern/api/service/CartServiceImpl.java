@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter04 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot
  **/
 @Service
 public class CartServiceImpl implements CartService {

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter04 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter05 - Modern API Development with Spring and Spring Boot
  **/
 @Entity
 @Table(name = "order_item")
