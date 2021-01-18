@@ -1,0 +1,1459 @@
+{
+	"info": {
+		"_postman_id": "89e0b0d1-acd6-4245-9904-28771c439f4f",
+		"name": "Chapter06",
+		"description": "Chapter 04 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/carts/{customerId}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}/items/{itemId}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222/items/3395a43e-2d88-40de-b95f-e00e1502085b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"items",
+						"3395a43e-2d88-40de-b95f-e00e1502085b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}/items/{itemId}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222/items/d3588630-ad8e-49df-bbd7-3167f7efb246",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"items",
+						"d3588630-ad8e-49df-bbd7-3167f7efb246"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}/items",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}/items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"3395a43e-2d88-40de-b95f-e00e1502085b\",\r\n    \"quantity\": 1,\r\n    \"unitPrice\": 18.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/{customerId}/items",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"3395a43e-2d88-40de-b95f-e00e1502085b\",\r\n    \"quantity\": 9,\r\n    \"unitPrice\": 18.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/a1b9b31d-e73c-4112-af7c-b68530f38222/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/products/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products/6d62d909-f957-430e-8689-b5129c0bb75e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"6d62d909-f957-430e-8689-b5129c0bb75e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addresses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTA5NTQ3NzMsImlhdCI6MTYxMDk1Mzg3M30.GOE2WwgN-1s82KqU2U-hd7rcrhdblrfV59HXTL9B7BL2eAgshjxtJGVhj9CtR_LQwA54fZo0yVwYFyMUrQBBFkn_2fDRU_8j1LD91NHDO1wqpiVx9kRzB9nUIR0OcpT2OdMaPD_HpmRiQOchwZSxsi7_c5dO59-URJn17ahXeBDJoAFrYQGmetjvuZtGwd9nLAvdSq9KKOL_gLle1wqsjJOYqJ9l_djLzeaO3Xgg-Kva5rmyZP0tWws7A95H2Si2tIqRGESZUCAQ3GbezpZB2OO_YgyCkQSuJkFTuQWc1MFbqtgeRcRiklX53BBngcHCfAeOAsBtKL17yXnd-IQSPn1GBLmCJh1-nMgrwAKS-lbx1k55FI93qGVoXDFFnVRUgjf_mA5aKNx9VECDtaXLDR7TA7LgjXiDXJ3ZPRNsF3-8fagHNKq42BjPdGH62XtWBve_Ide00DXNtSffHAlo2ukjGpN_zdmuZu7-UNeObg3g_dD6vvSnfupylJbVJooVDOQctR0u-ausMNKvh32NBG4-IQS2pW5Xo3i3l0GEtTP8AIy0vtafnFWBJI_OwTKVM8s966cgliswmeahLxIpLPeSo4Q0NxdE7MDnGg8wUbnzxoiq-ExcUjm_e7M2N7LMgdlsk0asQQYOJDe50EwMr2oE9ZDQepTtqwfSjcpKdKQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addresses/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/addresses/a731fda1-aaad-42ea-bdbc-a27eeebe2cc0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"addresses",
+						"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dDIiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJNb2Rlcm4gQVBJIERldmVsb3BtZW50IHdpdGggU3ByaW5nIGFuZCBTcHJpbmcgQm9vdCIsImV4cCI6MTYxMDk3MDE0NiwiaWF0IjoxNjEwOTY5MjQ2fQ.PnyEJHts2ruAAMaB6Z09mnzRz4rGmUlmagLvC8Jhj4BXcuVTyRp2_edzK5lcNlRCf_CVEjoMQvUagSBqEJogXCM6-G8nWREFrox_BHkteX1FWQOc31YliRGXNOJ53ldRgNU3p2lIR2mmharg__6E_X-ATOPFiXt_R-87B9g-WSs_HQcs-b7IyMYdE8bpcDfXtf9GwQSlPjEu-RGyINosReMuP2T8KwnSPkd_Lcb3WoIvIjVGmFs1UKosuNrnTh-2tpQEaYVzqYNrU9Tg_BhBfpf4ie1CH9iPZM2hZPTlESEpMlHUhvEjD5NX-XFt-WAZPi-F19F5igQ0t_DUnQjPCzDbmBLT9Wbiuna_MZvbmZNSRPisF82GL5j644sSq8_egiooGF-XVWJgnyY0-eOVQ13TVhoSlByC4HIB3HW6nHkJzOM9cBEzctwye_j8wRWx6TUkzq6QxONJjz5kF3WmnwTCLYpummzlR3SpUwKHWFi2Z2RGAzT3eau5wkCU19yFHa3SzfYAE7uFSAxRzscXHwq0hjYE5jmLAz0qOkL8PMkNQFNGmWy4kGqZzM2GjkdMw32N9OvCcgwmhfVv2njgVR6978odT3LsW13HmNERdH8Eks9vOMLYDSe1DLOzC5KGE2_rPbNR9X0j9-eJ4D8lPnvlWfvS7A-5xXARqxpYosw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"9I-999\",\r\n    \"residency\": \"Fraser Suites Le Claridge\",\r\n    \"street\": \"Champs-Elysees\",\r\n    \"city\": \"Paris\",\r\n    \"state\": \"Ile-de-France\",\r\n    \"country\": \"France\",\r\n    \"pincode\": \"75008\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addresses/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dDIiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJNb2Rlcm4gQVBJIERldmVsb3BtZW50IHdpdGggU3ByaW5nIGFuZCBTcHJpbmcgQm9vdCIsImV4cCI6MTYxMDk3MTI1OCwiaWF0IjoxNjEwOTcwMzU4fQ.Okp4-c4u8HHA4NE4aGgr2maLAtOqRnoWaP5R0YRj5M7DNBXes_WUIdZaAhHUtViDDWVElct2nfgm6jeOUlQtsdejaENA4rNohbj4PdoIHwfGViO7O37u2p8mOV6fs1Zvr906o87T0zPXZhuuIBnwcHZ1_E8T2b3LtwpcLyJtHF2ez31Pri_tJKsguY3qQ648SbKkaduzOCXUbkuSeN_8gcuyLYOu1sjLFzoGYSuZRE31buD-0iJmWCh9VaL07rdP90yIdVRuQ1gXZyIc10Epa0ygVexaywGTmlErNVlu92wacVZhm61akJ9_NheeRTbQsr4ZELy8LwxBLSaEMpdZW1803pwQGTPkAKPC2XLAuBm8n3t2dVNk7K_o-U0ZMfnvvO0BP2SV-XDMXTyiRTgqbuHFYMOQ_IufLZPKLqo4_IYUeBZ3XjtOBNgRmwBLUSUrQA5qdlWP4kRwE4yCvSMkVXTrnlU2G2M4eK8QotirSH0uBu5hr_QPQAVNVIlFMiKbKjwx6Va1ztlXKfMtgGNuG8TM34VTjBsPpoVIC57R0bfrSVNqGncXRfATZ2jkV3BMtDTMIOKHxdMPJNedqSgP9OaU0FDlPmYjbWDTTD3t-aoXpx3252KerHsdXTJAuTrzDas41r9-FWrcqPZtcx0FvNzGgYg2-uxFodIRfq6mOvM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/addresses/b78d485e-16a0-4b11-98d2-6e4dadbc60e7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"addresses",
+						"b78d485e-16a0-4b11-98d2-6e4dadbc60e7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cards",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cards/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards/618ffaff-cbcd-48d4-8848-a15601e6725b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"618ffaff-cbcd-48d4-8848-a15601e6725b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cards/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards/eda3de5c-8c01-4e49-a4f4-ae91584ea4d4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"eda3de5c-8c01-4e49-a4f4-ae91584ea4d4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cards",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardNumber\": \"999-999-999-999\",\r\n    \"expires\": \"12/28\",\r\n    \"cvv\": \"000\",\r\n    \"userId\": \"a1b9b31d-e73c-4112-af7c-b68530f38223\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/a1b9b31d-e73c-4112-af7c-b68530f38222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/a1b9b31d-e73c-4112-af7c-b68530f38223",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"a1b9b31d-e73c-4112-af7c-b68530f38223"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{id}/addresses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/a1b9b31d-e73c-4112-af7c-b68530f38222/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{id}/cards",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/a1b9b31d-e73c-4112-af7c-b68530f38222/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/shipping",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/shipping/a1b9b31d-e73c-4112-af7c-b68530f38222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"shipping",
+						"a1b9b31d-e73c-4112-af7c-b68530f38222"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/orders/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/0a59ba9f-629e-4445-8129-b9bce1985d6a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"0a59ba9f-629e-4445-8129-b9bce1985d6a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/orders - get order by customer Id (queryparam)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "098e97de3b61db55286f5f2812785116f"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders?customerId=a1b9b31d-e73c-4112-af7c-b68530f38222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "a1b9b31d-e73c-4112-af7c-b68530f38222"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\": \"a1b9b31d-e73c-4112-af7c-b68530f38222\",\r\n    \"address\": {\r\n        \"id\": \"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0\"\r\n    },\r\n    \"card\": {\r\n        \"id\": \"618ffaff-cbcd-48d4-8848-a15601e6725b\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"scott\",\r\n    \"password\": \"tiger\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"pq0kqvji8od3o8aqf7cn7nfo2hlv39294vls1cjaa2vcp3eugb0rpakrj27jaahbkef06t6i4727tnn12m55fkujh60vqtoo0t3oarqrqcd7ejcbfon29ojh3q46rln2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token/refresh",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"3i2tlrmdqnp60drl6i9c2kdm36s48qg5vm2ucgtflsk0cjo4dthhjan9aj1ck83det8m8hkl461cqkfl57puk81ct6j09ilporanf1jj414ht4ob7dkcakq6lk92cnct\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users - signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"scott1\",\r\n    \"password\": \"tiger\",\r\n    \"firstName\": \"Bruce\",\r\n    \"lastName\": \"Scott\",\r\n    \"email\": \"bruce1@scott.db\",\r\n    \"phone\": \"685338222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

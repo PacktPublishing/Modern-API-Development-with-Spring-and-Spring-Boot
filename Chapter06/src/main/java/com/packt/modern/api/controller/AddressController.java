@@ -6,7 +6,6 @@ import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
 import com.packt.modern.api.AddressApi;
-import com.packt.modern.api.entity.RoleEnum;
 import com.packt.modern.api.entity.RoleEnum.Const;
 import com.packt.modern.api.hateoas.AddressRepresentationModelAssembler;
 import com.packt.modern.api.model.AddAddressReq;
@@ -26,10 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AddressController implements AddressApi {
 
-  private AddressService service;
   private final AddressRepresentationModelAssembler assembler;
+  private AddressService service;
 
-  public AddressController(AddressService addressService, AddressRepresentationModelAssembler assembler) {
+  public AddressController(AddressService addressService,
+      AddressRepresentationModelAssembler assembler) {
     this.service = addressService;
     this.assembler = assembler;
   }

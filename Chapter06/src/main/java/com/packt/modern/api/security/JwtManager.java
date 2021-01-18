@@ -2,12 +2,10 @@ package com.packt.modern.api.security;
 
 import static com.packt.modern.api.security.Constants.EXPIRATION_TIME;
 import static com.packt.modern.api.security.Constants.ROLE_CLAIM;
-import static com.packt.modern.api.security.Constants.SECRET_KEY;
 import static java.util.stream.Collectors.toList;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import java.nio.charset.StandardCharsets;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;

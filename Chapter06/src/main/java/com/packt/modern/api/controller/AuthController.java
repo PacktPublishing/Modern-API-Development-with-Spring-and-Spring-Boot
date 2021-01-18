@@ -11,14 +11,11 @@ import com.packt.modern.api.model.RefreshToken;
 import com.packt.modern.api.model.SignInReq;
 import com.packt.modern.api.model.SignedInUser;
 import com.packt.modern.api.model.User;
-import com.packt.modern.api.security.JwtManager;
 import com.packt.modern.api.service.UserService;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,16 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController implements UserApi {
 
   private final UserService service;
-  private final UserDetailsService userDetailsService;
   private final PasswordEncoder passwordEncoder;
-  private final JwtManager tokenManager;
 
-  public AuthController(UserService service, UserDetailsService userDetailsService,
-      PasswordEncoder passwordEncoder, JwtManager tokenManager) {
+  public AuthController(UserService service, PasswordEncoder passwordEncoder) {
     this.service = service;
-    this.userDetailsService = userDetailsService;
     this.passwordEncoder = passwordEncoder;
-    this.tokenManager = tokenManager;
   }
 
   @Override
@@ -58,6 +50,9 @@ public class AuthController implements UserApi {
 
   @Override
   public ResponseEntity<Void> signOut(@Valid RefreshToken refreshToken) {
+    // We are using removeToken API for signout.
+    // Ideally you would like to get tgit she user ID from Logged in user's request
+    // and remove the refresh token based on retrieved user id from request.
     service.removeRefreshToken(refreshToken);
     return accepted().build();
   }

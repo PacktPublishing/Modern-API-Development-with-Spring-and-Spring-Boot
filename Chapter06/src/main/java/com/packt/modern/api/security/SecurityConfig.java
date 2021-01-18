@@ -103,17 +103,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(H2_URL_PREFIX).permitAll()
         .mvcMatchers(HttpMethod.POST, "/api/v1/addresses/**")
         .hasAuthority(RoleEnum.ADMIN.getAuthority())
-        //.mvcMatchers(HttpMethod.POST, "/api/v1/addresses/**").hasRole(RoleEnum.ADMIN.name())
         .anyRequest().authenticated()
         .and()
-        //.exceptionHandling().accessDeniedHandler(accessDeniedHandler)
-        //.and()
-        //.httpBasic()
-        //.authenticationEntryPoint(authenticationEntryPoint)
-        //.and()
-        //.addFilterBefore(failureHandler , BearerTokenAuthenticationFilter.class)
-        //.addFilter(new LoginFilter(super.authenticationManager(), mapper))
-        //.addFilter(new JwtAuthenticationFilter(super.authenticationManager()))
+        /* Filter based security configuration
+        .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+        .and()
+        .httpBasic()
+        .authenticationEntryPoint(authenticationEntryPoint)
+        .and()
+        .addFilterBefore(failureHandler , BearerTokenAuthenticationFilter.class)
+        .addFilter(new LoginFilter(super.authenticationManager(), mapper))
+        .addFilter(new JwtAuthenticationFilter(super.authenticationManager()))
+        */
         .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(
             jwt -> jwt.jwtAuthenticationConverter(getJwtAuthenticationConverter())))
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

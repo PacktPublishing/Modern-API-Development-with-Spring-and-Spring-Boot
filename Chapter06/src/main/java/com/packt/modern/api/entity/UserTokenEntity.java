@@ -24,7 +24,7 @@ public class UserTokenEntity {
   @Column(name = "ID", updatable = false, nullable = false)
   private UUID id;
 
-  @NotNull(message = "Product name is required.")
+  @NotNull(message = "Refresh token is required.")
   @Basic(optional = false)
   @Column(name = "refresh_token")
   private String refreshToken;

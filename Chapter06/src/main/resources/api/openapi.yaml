@@ -1230,7 +1230,7 @@ components:
           description: User Identifier
           type: string
     RefreshToken:
-      description: Contains the refrehs token
+      description: Contains the refresh token
       type: object
       properties:
         refreshToken:
