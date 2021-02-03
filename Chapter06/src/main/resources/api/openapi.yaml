@@ -908,6 +908,15 @@ components:
         id:
           description: Item Identifier
           type: string
+        name:
+          description: Item name
+          type: string
+        description:
+          description: Item description
+          type: string
+        imageUrl:
+          description: Item image URL
+          type: string
         quantity:
           description: The item quantity
           type: integer
@@ -1090,6 +1099,10 @@ components:
         phone:
           type: string
         userStatus:
+          type: string
+        addressId:
+          type: string
+        cardId:
           type: string
       xml:
         name: User

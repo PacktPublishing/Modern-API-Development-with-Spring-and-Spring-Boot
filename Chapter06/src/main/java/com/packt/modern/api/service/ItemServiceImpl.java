@@ -37,7 +37,9 @@ public class ItemServiceImpl implements ItemService {
   @Override
   public Item toModel(ItemEntity e) {
     Item m = new Item();
-    m.id(e.getProduct().getId().toString()).unitPrice(e.getPrice()).quantity(e.getQuantity());
+    m.id(e.getProduct().getId().toString()).unitPrice(e.getPrice()).quantity(e.getQuantity())
+        .description(e.getProduct().getDescription()).name(e.getProduct().getName())
+        .imageUrl(e.getProduct().getImageUrl());
     return m;
   }
 

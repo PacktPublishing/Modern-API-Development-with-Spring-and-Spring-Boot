@@ -3,6 +3,7 @@ package com.packt.modern.api.security;
 import static com.packt.modern.api.security.Constants.API_URL_PREFIX;
 import static com.packt.modern.api.security.Constants.AUTHORITY_PREFIX;
 import static com.packt.modern.api.security.Constants.H2_URL_PREFIX;
+import static com.packt.modern.api.security.Constants.PRODUCTS_URL;
 import static com.packt.modern.api.security.Constants.REFRESH_URL;
 import static com.packt.modern.api.security.Constants.ROLE_CLAIM;
 import static com.packt.modern.api.security.Constants.SIGNUP_URL;
@@ -25,6 +26,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -100,6 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.DELETE, TOKEN_URL).permitAll()
         .antMatchers(HttpMethod.POST, SIGNUP_URL).permitAll()
         .antMatchers(HttpMethod.POST, REFRESH_URL).permitAll()
+        .antMatchers(HttpMethod.GET, PRODUCTS_URL).permitAll()
         .antMatchers(H2_URL_PREFIX).permitAll()
         .mvcMatchers(HttpMethod.POST, "/api/v1/addresses/**")
         .hasAuthority(RoleEnum.ADMIN.getAuthority())
@@ -142,11 +145,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-    CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-    source.registerCorsConfiguration("/**", corsConfiguration);
-
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("*"));
+    configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH"));
+    //configuration.setAllowCredentials(true);
+    // For CORS response headers
+    configuration.addAllowedOrigin("*");
+    configuration.addAllowedHeader("*");
+    configuration.addAllowedMethod("*");
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
     return source;
   }
 

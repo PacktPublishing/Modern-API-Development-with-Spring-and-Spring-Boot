@@ -1,0 +1,5 @@
+@import "tailwindcss/base";
+
+/* components injects any component (reusable styles like cards and form elements, etc.) classes registered by plugins based in our config file. */
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
