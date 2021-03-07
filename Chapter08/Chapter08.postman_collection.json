@@ -1,14 +1,24 @@
 {
 	"info": {
-		"_postman_id": "3b691a3f-a6bd-4380-9e26-8af33ed2cf22",
-		"name": "Chapter05",
-		"description": "Chapter 05 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
+		"_postman_id": "89e0b0d1-acd6-4245-9904-28771c439f4f",
+		"name": "Chapter08",
+		"description": "Chapter 08 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "/carts/{customerId}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTI1ODU4NTMsImlhdCI6MTYxMjU4NDk1M30.Azv9ktfiCfHh9ZMt64X0W_UPj-2LnbbxfuBX8nOzMpfwKWsYBQuOe7adLKCbBdLLANfr50Y4IHhdgIRxPNwEz1nZSyemzLTl0ew7x_PO_De6EQHaBX5JI694T8s6sDSvQ9KnVbTiIzEl8k7vcBligYPa03gfdTlspd1TWOoBSsnVCRpRoJaAQQ6IFzpsDmI5Dv4HSxBF_mcq1owfBRwUDjacGyLqblaR4WVib2HXng1lBASMipXXe8YAe4R9m-JbEywH0nRfSvKiKNUovxc6h4xeRig2H-53unUZtJEB29LQBcxugVOlnnd-xXWKHFQdZ2wo6SEUfATC25W5Ki1WKkGC8JfsylB9WwqnAFThGPnllaz9s8b8HpmylgGksKHMS_E7oOfckSp0fQAkCIvGO8qsNRgfXf-M_ZX4d14QT4YO5UOZ9sJzKF2Ve6XBAh0N1h0vR7Zz68RN9DOElbDdV0dm3RFhdBZ7rsuU9Oyx4sQNbU19O3rgh6nnnnOngLfSBsJ1nB8e9HJvgZINwnqgu6yLeO0MIK5TyJ4wei5h4CNZ-HrB7ctwucxfwqPASFgS8ZaawGqcnez55HTKY7LKUgIFbaeRNOnUQlp-accskf4-9Jbogfo9KF1EczmhcULOlWgKF6dYvCvYA3kURjFtxOxT67FC2E-blLk1nj_UmMg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -367,6 +377,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTA5NTQ3NzMsImlhdCI6MTYxMDk1Mzg3M30.GOE2WwgN-1s82KqU2U-hd7rcrhdblrfV59HXTL9B7BL2eAgshjxtJGVhj9CtR_LQwA54fZo0yVwYFyMUrQBBFkn_2fDRU_8j1LD91NHDO1wqpiVx9kRzB9nUIR0OcpT2OdMaPD_HpmRiQOchwZSxsi7_c5dO59-URJn17ahXeBDJoAFrYQGmetjvuZtGwd9nLAvdSq9KKOL_gLle1wqsjJOYqJ9l_djLzeaO3Xgg-Kva5rmyZP0tWws7A95H2Si2tIqRGESZUCAQ3GbezpZB2OO_YgyCkQSuJkFTuQWc1MFbqtgeRcRiklX53BBngcHCfAeOAsBtKL17yXnd-IQSPn1GBLmCJh1-nMgrwAKS-lbx1k55FI93qGVoXDFFnVRUgjf_mA5aKNx9VECDtaXLDR7TA7LgjXiDXJ3ZPRNsF3-8fagHNKq42BjPdGH62XtWBve_Ide00DXNtSffHAlo2ukjGpN_zdmuZu7-UNeObg3g_dD6vvSnfupylJbVJooVDOQctR0u-ausMNKvh32NBG4-IQS2pW5Xo3i3l0GEtTP8AIy0vtafnFWBJI_OwTKVM8s966cgliswmeahLxIpLPeSo4Q0NxdE7MDnGg8wUbnzxoiq-ExcUjm_e7M2N7LMgdlsk0asQQYOJDe50EwMr2oE9ZDQepTtqwfSjcpKdKQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -463,6 +483,16 @@
 		{
 			"name": "/addresses",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dDIiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJNb2Rlcm4gQVBJIERldmVsb3BtZW50IHdpdGggU3ByaW5nIGFuZCBTcHJpbmcgQm9vdCIsImV4cCI6MTYxMDk3MDE0NiwiaWF0IjoxNjEwOTY5MjQ2fQ.PnyEJHts2ruAAMaB6Z09mnzRz4rGmUlmagLvC8Jhj4BXcuVTyRp2_edzK5lcNlRCf_CVEjoMQvUagSBqEJogXCM6-G8nWREFrox_BHkteX1FWQOc31YliRGXNOJ53ldRgNU3p2lIR2mmharg__6E_X-ATOPFiXt_R-87B9g-WSs_HQcs-b7IyMYdE8bpcDfXtf9GwQSlPjEu-RGyINosReMuP2T8KwnSPkd_Lcb3WoIvIjVGmFs1UKosuNrnTh-2tpQEaYVzqYNrU9Tg_BhBfpf4ie1CH9iPZM2hZPTlESEpMlHUhvEjD5NX-XFt-WAZPi-F19F5igQ0t_DUnQjPCzDbmBLT9Wbiuna_MZvbmZNSRPisF82GL5j644sSq8_egiooGF-XVWJgnyY0-eOVQ13TVhoSlByC4HIB3HW6nHkJzOM9cBEzctwye_j8wRWx6TUkzq6QxONJjz5kF3WmnwTCLYpummzlR3SpUwKHWFi2Z2RGAzT3eau5wkCU19yFHa3SzfYAE7uFSAxRzscXHwq0hjYE5jmLAz0qOkL8PMkNQFNGmWy4kGqZzM2GjkdMw32N9OvCcgwmhfVv2njgVR6978odT3LsW13HmNERdH8Eks9vOMLYDSe1DLOzC5KGE2_rPbNR9X0j9-eJ4D8lPnvlWfvS7A-5xXARqxpYosw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -483,7 +513,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"number\": \"9I-999\",\r\n    \"residency\": \"Fraser Suites Le Claridge\",\r\n    \"street\": \"Champs-Elysees\",\r\n    \"city\": \"Paris\",\r\n    \"state\": \"Île-de-France\",\r\n    \"country\": \"France\",\r\n    \"pincode\": \"75008\"\r\n}",
+					"raw": "{\r\n    \"number\": \"9I-999\",\r\n    \"residency\": \"Fraser Suites Le Claridge\",\r\n    \"street\": \"Champs-Elysees\",\r\n    \"city\": \"Paris\",\r\n    \"state\": \"Ile-de-France\",\r\n    \"country\": \"France\",\r\n    \"pincode\": \"75008\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -509,6 +539,16 @@
 		{
 			"name": "/addresses/{id}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dDIiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJNb2Rlcm4gQVBJIERldmVsb3BtZW50IHdpdGggU3ByaW5nIGFuZCBTcHJpbmcgQm9vdCIsImV4cCI6MTYxMDk3MTI1OCwiaWF0IjoxNjEwOTcwMzU4fQ.Okp4-c4u8HHA4NE4aGgr2maLAtOqRnoWaP5R0YRj5M7DNBXes_WUIdZaAhHUtViDDWVElct2nfgm6jeOUlQtsdejaENA4rNohbj4PdoIHwfGViO7O37u2p8mOV6fs1Zvr906o87T0zPXZhuuIBnwcHZ1_E8T2b3LtwpcLyJtHF2ez31Pri_tJKsguY3qQ648SbKkaduzOCXUbkuSeN_8gcuyLYOu1sjLFzoGYSuZRE31buD-0iJmWCh9VaL07rdP90yIdVRuQ1gXZyIc10Epa0ygVexaywGTmlErNVlu92wacVZhm61akJ9_NheeRTbQsr4ZELy8LwxBLSaEMpdZW1803pwQGTPkAKPC2XLAuBm8n3t2dVNk7K_o-U0ZMfnvvO0BP2SV-XDMXTyiRTgqbuHFYMOQ_IufLZPKLqo4_IYUeBZ3XjtOBNgRmwBLUSUrQA5qdlWP4kRwE4yCvSMkVXTrnlU2G2M4eK8QotirSH0uBu5hr_QPQAVNVIlFMiKbKjwx6Va1ztlXKfMtgGNuG8TM34VTjBsPpoVIC57R0bfrSVNqGncXRfATZ2jkV3BMtDTMIOKHxdMPJNedqSgP9OaU0FDlPmYjbWDTTD3t-aoXpx3252KerHsdXTJAuTrzDas41r9-FWrcqPZtcx0FvNzGgYg2-uxFodIRfq6mOvM",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [
 					{
@@ -537,7 +577,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/addresses/1d76676d-9d87-4a5a-8b42-1ca044a361b0",
+					"raw": "http://localhost:8080/api/v1/addresses/b78d485e-16a0-4b11-98d2-6e4dadbc60e7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -547,7 +587,7 @@
 						"api",
 						"v1",
 						"addresses",
-						"1d76676d-9d87-4a5a-8b42-1ca044a361b0"
+						"b78d485e-16a0-4b11-98d2-6e4dadbc60e7"
 					]
 				}
 			},
@@ -751,6 +791,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTI1ODg4MDgsImlhdCI6MTYxMjU4NzkwOH0.V0Xh-Sr3cWub27nozarL47YsQoHWRxc50GsXNCXDruLDCR1ucm-Hz864X-ed07cTqGt7H3UFwP508PhQmB-tLm0glg4SKxfI2ynZ_e47RK-DMmy3SENAREz0xiTA5OdWokL_ILuBiBzD3yf-YhEmT2qNpUn8e0UpPdf7reAFIVEFQU3u6KMlYFwOMHyhcoWQ6kSjp8Vc1tAIAQYVjpxry6Ewcjs6sfCaRS-d_mErvwSAWhoV1hNY_aeNUL9Lg9aalMEL9NYcfbS4qO5eWDF6U5vkbHslbKcVa-cvgzHMwlFdk12LH-k3XoZ72SkgrnYb9MKAzT78Sx-orOACPZNTXlQcj3TG9-KVUKL2M7PTLbkXVjGnvMWSz7gOb1UZzKn3PFcnR3YIvRgOKY504CshczOuIQV5CE6y7Xyj_L63AyhVhUKJ9zixGYkiCNVSdYkFbcJpyMTO_TCckVTPCpBVRku2mzF15GGfGy62xoHOSo_p2Ef4WDxtbCNJhOVB6MZXVyaTSY5wAilNRBFROG_En69y35XGmf3yzmb7ZGXqwB_aHHnajIQzGPRpBir0lfzSOvAnUJaTcRKrqY6hGHEULi_ByVMB2oyhGwuF4tu1FOHimQrsm1D8GcWRYZnZBxGznTU4ovKyYD4Au5UApplStfxMpumrwyh1XVC15ZR6UEU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -1106,6 +1156,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTI1MzE1NTUsImlhdCI6MTYxMjUzMDY1NX0.QZc9i2whR3hJzu1O12MR3LDNzkSGqT75a_zS8dKoaARm_caQB3mdfSKs4D0FIkw4wnh5s--mN76uVuJyrPeDe4iAldkoDrDnTTWqpQZLyKhbS8BTqVCBSsCENrviumVbS5AEj61DI32J3TBHDbOt0ylaLwv6dAvGPGB1P4oHsOB3HXqGR3hb0cPh4xHFJoETz53hG01x1CqLDPykp2EeUGsIJdpjLmDxqNnAH1wF472YHIvKwo5w5b6hntWt__P7WBcfPHrZWYu1X1ktRVhtt2wppJkJqiswX5rkCC6oFkOW6n0fEJEmbbPGppzibJ4HRY79oFdN699_pgQc2JcROiQCjvfSdQ4Qjidwv4OA7cvZJF0j62U6Tl_waIdUIwfG_3a-sMh8xs9zXgbmeSMs2UPjUFKwMSLiqNx7P4GNvhc3Q7KzOzTsNVrd4OTceEjODTlUmpYLhI890C4Br7q1pyCDJBerLFytgJrppswciZVvY2e4nYHabbAXJDRdt-pFqKB7tUg2uXHW_ut2qjpnkXzJGRybCWoMRcB61KC5SNsOIwGLfNaaZMu8CLROwyuS6aEfw2dG2AgC8ge15u38qLeMNqFlSI3V91UHNjwDe3eE1vdcx9IejWIKS1HKLbjqgLwmWqjDKprGgsk7IxYgKh3F6yX13BPezdd1sbiRcS4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -1158,6 +1218,16 @@
 		{
 			"name": "/orders",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTI1ODY3NzMsImlhdCI6MTYxMjU4NTg3M30.HCsFG17Xp18xt92O6Ea6TFAn3kd_lIqcaJCZqoQXzcQ0ZdPJPdnhHTBrHuqFqZUflAx6oGAyjPOdmSJ5bwGdE5xIzeT0bkap2YjdhCAyR_TjVN99uS1xfprLUOAslKgeyHeCljawxbtI2qbabVYHWYZCDKLOuZna8gQW4paOsVAZ6q2nynFvokxN8GX77l2NSQz-J2j3O1fwOiC7FXDuxLR3A8SsUT6JcyZaATCmVQ2O8ynqYDEQfELGwpowMNFU1zTeVwQjBLkC1Qw2nqSkLedlgmBMgGOEnGEZxuPmuT29H4R-t2sOu-15g4CsGpv2A8ARmwR0cJc4PfogwrhdRiPZ9Ah76js3dIYmnLZclqHJJQq8v76ou78ffe0oERim5jaqy0f2n77JY8UtZvvOjAvMV39NGD6WPLgg3aQDXM9FkUjZa5HSwg657RcG7WzKZmPDZD-wGi8jbWO1qV6DCwFIQUR962xkL247P6lsgAwqrkZlDPB1pfJo958xLS9iFsZq-98BYk7L5L8orJAA9Lk6J7_v1moPzt1YT1KFNrhyQ64ecPuZ4BGL1XQ-65qMBYOXrsqLO-XZe2ijzCa0OPpDoFBZE_81u77prHyQY8UYSIeo0qRqb8nR2h8MVoDPfL8rh_QkheLRg89ZlAgS2so6mNV82zt_YWZAzj0YdxY",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -1178,7 +1248,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customerId\": \"a1b9b31d-e73c-4112-af7c-b68530f38222\",\r\n    \"address\": {\r\n        \"id\": \"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0\",\r\n        \"cardId\": \"618ffaff-cbcd-48d4-8848-a15601e6725b\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"customerId\": \"a1b9b31d-e73c-4112-af7c-b68530f38222\",\r\n    \"address\": {\r\n        \"id\": \"a731fda1-aaad-42ea-bdbc-a27eeebe2cc0\"\r\n    },\r\n    \"card\": {\r\n        \"id\": \"618ffaff-cbcd-48d4-8848-a15601e6725b\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1196,6 +1266,210 @@
 						"api",
 						"v1",
 						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"scott\",\r\n    \"password\": \"tiger\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"pq0kqvji8od3o8aqf7cn7nfo2hlv39294vls1cjaa2vcp3eugb0rpakrj27jaahbkef06t6i4727tnn12m55fkujh60vqtoo0t3oarqrqcd7ejcbfon29ojh3q46rln2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/token/refresh",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "If-None-Match",
+						"type": "text",
+						"value": "\"0a54ae579d2f1e6a7050d6775e602a9ab"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"3i2tlrmdqnp60drl6i9c2kdm36s48qg5vm2ucgtflsk0cjo4dthhjan9aj1ck83det8m8hkl461cqkfl57puk81ct6j09ilporanf1jj414ht4ob7dkcakq6lk92cnct\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/token/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users - signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "098e97de3b61db55286f5f2812785116f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"scott1\",\r\n    \"password\": \"tiger\",\r\n    \"firstName\": \"Bruce\",\r\n    \"lastName\": \"Scott\",\r\n    \"email\": \"bruce1@scott.db\",\r\n    \"phone\": \"685338222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
 					]
 				}
 			},

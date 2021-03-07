@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+  <property name="LOG_PATTERN"
+    value="%d{yyyy-MM-dd HH:mm:ss.SSS}
+    %5p [${applicationName},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]
+    [%mdc{env:-null}] [%mdc{tenant:-null}] [%mdc{user:-null}]
+    [%mdc{branch:-null}] ${PID:- } --- [%15.15t] %-40.40logger{39} : %msg%n"/>
+  <property name="LOG_DIR" value="${chapter08.service.logging.path:-chapter08-logs}"/>
+  <property name="SERVICE_ENV" value="${service.env:-dev}"/>
+  <property name="LOG_BASE_PATH" value="${LOG_DIR}/${SERVICE_ENV}"/>
+  <property name="MAX_FILE_SIZE" value="${chapter08.service.logging.rolling.maxFileSize:-100MB}"/>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>utf8</charset>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <root level="error">
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+</configuration>

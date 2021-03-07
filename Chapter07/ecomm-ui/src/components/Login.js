@@ -9,7 +9,6 @@ const Login = ({ uri, auth }) => {
   const history = useHistory();
 
   const cancel = () => {
-    //e.preventDefault();
     const l = history.length;
     l > 2 ? history.goBack() : history.push("/");
   };
@@ -27,18 +26,7 @@ const Login = ({ uri, auth }) => {
       setErrMsg(
         res && typeof res === "string" ? res : "Invalid Username/Password"
       );
-    } /* else {
-      // Mocked. Should be removed.
-      setToken({
-        refreshToken:
-          "dbq4d3fd74q5k85jad39jkhbvaa6it92dd7ripiaprh6v9lvfh6v63p6op399krob9n7duff43lmjcpgics7up2ktpl1hnbkob4l1qaa4hh5eb2lkosqbv4h5s82pj5c",
-        accessToken:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJzY290dCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTW9kZXJuIEFQSSBEZXZlbG9wbWVudCB3aXRoIFNwcmluZyBhbmQgU3ByaW5nIEJvb3QiLCJleHAiOjE2MTIwMTI4MTgsImlhdCI6MTYxMjAxMTkxOH0.dPFo01iQ9LruRkKQVPHnZ61KOhZWVr4SczIOS8Y9wCvmIR1vn-rv3-grbAKArCY6Jlu8T4o875qlzi2wiuLKuYNY3E_MzkNu-bODOeqUpoLAQ_J1uxoF36ZheC6gph3ywwsINgpiIURqKWzMVuoPzrn2VmsM4en_kN2KpqoqT0hbCzY_KqJV1fBWU77N__rroZbV1C5Z0-ft4D9BjNAKDf5BFJa2n3VqDmnfn3QKHQek9YHRneTwtoFJazMDS9_dJVUqzLmjFgPEg9hn3a6FEnwkohjlpSCONN_1hWDb9T871v0wBlwwhuHTo3km6giCcv908eWxSeECbPiIPsvvHxFE7_3r6s0EGioPHhV5XQnJTKMpoVuv0uZ4t4Vrr8IeRGNWTxw3iJ3FMWvbSN5wPOvJxeefyTQn9bYLW0TqqhHyi42GFIt7LPZckyTw27hvaycpq_UIowLRGFtWgMkwOTcEma1l9ugoGE_zsQ9lM4CcGGfwX8DFowB-kiFNhQcUOxW3OqUMyF_fen8wCgFM4D5SGtSQ9FiGpna966_DY1JE25k28OoRauM1uwK_iA87UWjzhH5ilc53DzzfEcjoCfDrz8bQrK3DFQPyYJkQ3gsSUj3CZUB4hsNkiUXlDcX1jbzvfnNqk6FCQd4-agjtrQgSS5P3zUlZ_FjKrUHN4n0",
-        username: "scott",
-        userId: "a1b9b31d-e73c-4112-af7c-b68530f38222",
-      });
-      history.push("/");
-    } */
+    }
   };
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">

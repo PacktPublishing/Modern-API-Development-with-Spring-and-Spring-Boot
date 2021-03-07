@@ -1,0 +1,132 @@
+plugins {
+    /* https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.4-Release-Notes */
+    id 'org.springframework.boot' version '2.4.3'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'org.hidetake.swagger.generator' version '2.18.2'
+    id 'jacoco'
+}
+
+group = 'com.packt.modern.api'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_15
+
+swaggerSources {
+    def typeMappings = 'URI=URI, BigDecimal=BigDecimal, EntityModel=EntityModel'
+    def importMappings = 'URI=java.net.URI, BigDecimal=java.math.BigDecimal, EntityModel=org.springframework.hateoas.EntityModel'
+    eStore {
+        def apiYaml = "${rootDir}/src/main/resources/api/openapi.yaml"
+        def configJson = "${rootDir}/src/main/resources/api/config.json"
+        inputFile = file(apiYaml)
+        def ignoreFile = file("${rootDir}/src/main/resources/api/.openapi-generator-ignore")
+        code {
+            language = 'spring'
+            configFile = file(configJson)
+            rawOptions = ['--ignore-file-override', ignoreFile, '--type-mappings',
+                          typeMappings, '--import-mappings', importMappings] as List<String>
+            components = [models: true, apis: true, supportingFiles: 'ApiUtil.java']
+            //templateDir = file("${rootDir}/src/main/resources/templates")
+            //dependsOn validation // Should be uncommented once plugin starts supporting OA 3 validation
+        }
+    }
+}
+
+compileJava.dependsOn swaggerSources.eStore.code
+sourceSets.main.java.srcDir "${swaggerSources.eStore.code.outputDir}/src/main/java"
+sourceSets.main.resources.srcDir "${swaggerSources.eStore.code.outputDir}/src/main/resources"
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration/java')
+        }
+        resources.srcDir file('src/integration/resources')
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform()
+    description = 'Runs the integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+test {
+    jvmArgs '--enable-preview'
+    useJUnitPlatform()
+    finalizedBy(jacocoTestReport)
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(
+                dir: it,
+                exclude: [
+                    'com/packt/modern/api/model/*',
+                    'com/packt/modern/api/*Api.*',
+                    'com/packt/modern/api/security/UNUSED/*',
+                ])
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 1
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // OpenAPI Starts
+    swaggerCodegen 'org.openapitools:openapi-generator-cli:5.0.0'
+    compileOnly 'io.swagger:swagger-annotations:1.6.2'
+    compileOnly 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.openapitools:jackson-databind-nullable:0.2.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    compileOnly 'io.springfox:springfox-oas:3.0.0'
+    // OpenAPI Ends
+
+    // DB Starts
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.flywaydb:flyway-core'
+    runtimeOnly 'com.h2database:h2'
+    // DB Ends
+
+    // Security Starts
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'com.auth0:java-jwt:3.12.0'
+    // Security Ends
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testRuntime('com.h2database:h2')
+}

@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "89e0b0d1-acd6-4245-9904-28771c439f4f",
 		"name": "Chapter06",
-		"description": "Chapter 04 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
+		"description": "Chapter 06 - Biz logic for APIs \r\nBook - Modern API Development with Spring and Spring Boot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
