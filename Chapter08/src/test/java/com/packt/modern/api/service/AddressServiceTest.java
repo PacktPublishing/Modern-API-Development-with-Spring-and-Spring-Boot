@@ -128,7 +128,7 @@ public class AddressServiceTest {
     try {
       service.deleteAddressesById(nonExistId);
     } catch (Exception ex) {
-    // then
+      // then
       assertThat(ex).isInstanceOf(com.packt.modern.api.exception.ResourceNotFoundException.class);
       assertThat(ex.getMessage()).contains("No Address found with id " + nonExistId);
     }

@@ -29,36 +29,7 @@ public class TestUtils {
     if (Objects.isNull(objectMapper)) {
       objectMapper = new AppConfig().objectMapper();
       objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-      //objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-      /*LinkRelationProvider provider = new DelegatingLinkRelationProvider(
-          new AnnotationLinkRelationProvider(),
-          DefaultLinkRelationProvider.INSTANCE);
-
-      objectMapper.registerModule(new Jackson2HalModule());
-      objectMapper.setHandlerInstantiator(
-          new HalHandlerInstantiator(provider, CurieProvider.NONE, MessageResolver.DEFAULTS_ONLY,
-              new HalConfiguration()));*/
     }
     return objectMapper;
   }
-
-  /*public enum DefaultLinkRelationProvider implements LinkRelationProvider {
-
-    INSTANCE;
-
-    @Override
-    public LinkRelation getItemResourceRelFor(Class<?> type) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public LinkRelation getCollectionResourceRelFor(Class<?> type) {
-      return LinkRelation.of("content");
-    }
-
-    @Override
-    public boolean supports(LookupContext delimiter) {
-      return delimiter.isCollectionRelationLookup();
-    }
-  }*/
 }

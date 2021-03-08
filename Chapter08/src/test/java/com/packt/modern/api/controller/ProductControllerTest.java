@@ -45,24 +45,18 @@ public class ProductControllerTest {
   private ProductService service;
   @Mock
   private MessageSource msgSource;
-  //@InjectMocks
+
   private ProductController controller;
 
   private ProductEntity entity;
   private static final String URI = "/api/v1/products";
 
-  // This object will be magically initialized by the initFields method below.
   private JacksonTester<Product> shipmentTester;
 
   @BeforeEach
   public void setup() {
-    // We would need this line if we would not use the MockitoExtension
-    // MockitoAnnotations.initMocks(this);
-    // Here we can't use @AutoConfigureJsonTesters because there isn't a Spring context
     JacksonTester.initFields(this, new ObjectMapper());
-
     controller = new ProductController(service, new ProductRepresentationModelAssembler());
-    // MockMvc standalone approach
     mockMvc = MockMvcBuilders.standaloneSetup(controller)
         .setControllerAdvice(new RestApiErrorHandler(msgSource))
         .build();

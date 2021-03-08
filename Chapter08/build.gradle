@@ -92,7 +92,7 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 1
+                minimum = 0.9
             }
         }
     }
