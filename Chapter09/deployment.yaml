@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: chapter09
+  name: chapter09
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chapter09
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: chapter09
+    spec:
+      containers:
+      - image: 192.168.80.1:5000/packt-modern-api-development-chapter09:0.0.1-SNAPSHOT
+        name: packt-modern-api-development-chapter09
+        resources: {}
+status: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo
+  name: demo
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: demo
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: chapter09
+  name: chapter09
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: chapter09
+  type: ClusterIP
+status:
+  loadBalancer: {}
