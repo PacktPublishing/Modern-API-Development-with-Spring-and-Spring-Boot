@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.packt.modern.api'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_15
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+def grpcVersion = '1.37.0'
+dependencies {
+	implementation 'com.packt.modern.api:payment-gateway-api:0.0.1'
+	implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+	implementation "io.grpc:grpc-stub:${grpcVersion}"
+	implementation "io.grpc:grpc-netty:${grpcVersion}"
+	implementation 'com.google.api.grpc:googleapis-common-protos:0.0.3'
+
+	// logging
+	implementation 'net.logstash.logback:logstash-logback-encoder:6.6'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.0.2'
+	implementation 'io.zipkin.brave:brave-instrumentation-grpc:5.13.2'
+	implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin:3.0.2'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "io.grpc:grpc-testing:${grpcVersion}"
+}
+
+test {
+	useJUnitPlatform()
+}

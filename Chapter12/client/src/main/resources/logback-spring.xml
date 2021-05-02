@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+  <springProperty scope="context" name="logstashDestination" source="logstash.destination"/>
+  <property name="LOG_PATTERN"
+    value="%d{yyyy-MM-dd HH:mm:ss.SSS}
+    %5p [${applicationName},%X{traceId:-},%X{spanId:-}]
+    ${PID:-} --- [%15.15t] %-40.40logger{39} : %msg%n"/>
+  <property name="LOG_FILE" value="${chapter12-grpc-client.service.logging.file:-chapter12-grpc-client-logs}"/>
+  <property name="LOG_DIR" value="${chapter12-grpc-client.service.logging.path:-chapter12-grpc-client-logs}"/>
+  <property name="SERVICE_ENV" value="${service.env:-dev}"/>
+  <property name="LOG_BASE_PATH" value="${LOG_DIR}/${SERVICE_ENV}"/>
+  <property name="MAX_FILE_SIZE" value="${chapter12.service.logging.rolling.maxFileSize:-100MB}"/>
+
+  <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>${logstashDestination}</destination>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+  </appender>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>utf8</charset>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_BASE_PATH}/${applicationName}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_BASE_PATH}/archive/${applicationName}.%d{yyyy-MM-dd}-%i.log.gz
+      </fileNamePattern>
+      <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+      <!-- <maxHistory>30</maxHistory>
+      <totalSizeCap>3GB</totalSizeCap> -->
+    </rollingPolicy>
+    <encoder>
+      <charset>utf8</charset>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+  <logger name="org.springframework.security" level="trace" additivity="false">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="STASH"/>
+    <appender-ref ref="FILE"/>
+  </root>
+
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+</configuration>

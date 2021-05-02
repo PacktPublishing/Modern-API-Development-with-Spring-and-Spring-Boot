@@ -1,0 +1,458 @@
+syntax = "proto3";
+package com.packtpub.v1;
+option java_package = "com.packt.modern.api.grpc.v1";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+
+message Address {
+  string id = 1;
+  // Number of house, flat, bunglow, plot or property
+  string number = 2;
+  // Name and other details of the residency, society or building
+  string residency = 3;
+  // Address line 2 (e.g., apartment, suite, unit, or building).
+  string street = 4;
+  // City, district, suburb, town, or village.
+  string city = 5;
+  // State, county, province, or region.
+  string state = 6;
+  // Two-letter country code (ISO 3166-1 alpha-2).
+  string country = 7;
+  string postalCode = 8;
+}
+
+message BillingDetails {
+  Address address = 1;
+  string email = 2;
+  // Full name
+  string name = 3;
+  // Billing phone number (including extension).
+  string phone = 4;
+}
+
+message Card {
+  string id = 1;
+  // Cardholder name.
+  string name = 2;
+  Address address = 3;
+  // Can be American Express, Diners Club, Discover, JCB, MasterCard, UnionPay, Visa, or Unknown.
+  string brand = 4;
+  // Two-letter ISO code representing the country of the card. You could use this attribute
+  // to get a sense of the international breakdown of cards you’ve collected.
+  string country = 5;
+  // Two-digit number representing the card’s expiration month.
+  uint32 expMonth = 6;
+  // Four-digit number representing the card’s expiration year.
+  uint32 expYear = 7;
+  // Uniquely identifies this particular card number. You can use this attribute to check whether
+  // two customers who’ve signed up with you are using the same card number, for example.
+  // For payment methods that tokenize card information (Apple Pay, Google Pay),
+  // the tokenized number might be provided instead of the underlying card number.
+  // Starting May 1, 2021, card fingerprint in India for Connect will change to allow
+  // two fingerprints for the same card — one for India and one for the rest of the world.
+  string fingerprint = 8;
+  // Card funding type. Can be credit, debit, prepaid, or unknown.
+  string funding = 9;
+  uint32 installments = 10;
+  // The last four digits of the card.
+  string last4 = 11;
+  // The customer that this card belongs to. This attribute will not be in the card object
+  // if the card belongs to an account or recipient instead.
+  string customer = 12;
+}
+
+message StripeAccount {
+  string id = 1;
+}
+
+message PaymentMethodDetails {
+  Card card = 1;
+  // The type of transaction-specific details of the payment method used in the payment,
+  // one of card, stripeAccount, or you can add similar others such as paypal.
+  // An additional hash is included on payment method details with a name matching this value.
+  // It contains information specific to the payment method.
+  string type = 2;
+  StripeAccount stripeAccount = 3;
+}
+
+message Refund {
+  string id = 1;
+  // A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1,
+  // Japanese Yen being a zero-decimal currency) representing the total amount associated with the
+  // source. This is the amount for which the source will be chargeable once ready. Required for single_use sources.
+  uint32 amount = 2;
+  // ID of the application fee that was refunded.
+  string fee = 3;
+  google.protobuf.Timestamp created = 4;
+  // Three-letter ISO currency code, in lowercase.
+  string currency = 5;
+}
+
+message AchCreditTransfer {
+  // Account number to transfer funds to.
+  string accountNumber = 1;
+  // Routing transit number for the bank account to transfer funds to
+  string routingNumber = 2;
+  // Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
+  string fingerprint = 3;
+  // Name of the bank associated with the routing number.
+  string bankName = 4;
+  // SWIFT code of the bank associated with the routing number.
+  string swiftCode = 5;
+}
+
+message Owner {
+  // Owner’s address.
+  Address address = 1;
+  // Owner’s email address.
+  string email = 2;
+  // Owner’s full name.
+  string name = 3;
+  // Owner’s phone number (including extension).
+  string phone = 4;
+  // Verified values are verified or provided by the payment method directly
+  // (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
+  // Verified owner’s address.
+  Address verifiedAddress = 5;
+  // Verified owner’s email address.
+  string verifiedEmail = 6;
+  // Verified owner’s full name.
+  string verifiedName = 7;
+  // Verified owner’s phone number
+  string verifiedPhone = 8;
+}
+
+message Receiver {
+  // The address of the receiver source. This is the value that should be communicated to the customer to send their funds to.
+  string address = 1;
+  // The total amount that was moved to your balance. This is almost always equal to the amount charged. In rare cases when customers deposit excess funds and we are unable to refund those, those funds get moved to your balance and show up in amountCharged as well. The amount charged is expressed in the source’s currency.
+  uint32 amountCharged = 2;
+  // The total amount received by the receiver source. amountReceived = amountReturned + amountCharged should be true for consumed sources unless customers deposit excess funds. The amount received is expressed in the source’s currency.
+  uint32 amountReceived = 3;
+  // The total amount that was returned to the customer. The amount returned is expressed in the source’s currency.
+  uint32 amountReturned = 4;
+  enum RefundAttributesMethod {
+    EMAIL = 0;
+    MANUAL = 1;
+    NONE = 2;
+  }
+  // Type of refund attribute method, one of email, manual, or none.
+  RefundAttributesMethod refundAttributesMethod = 5;
+  enum RefundAttributeStatus {
+    MISSING = 0;
+    REQUESTED = 1;
+    AVAILABLE = 2;
+  }
+  // Type of refund attribute status, one of missing, requested, or available.
+  RefundAttributeStatus refundAttributesStatus = 6;
+}
+
+enum Flow {
+  REDIRECT = 0;
+  RECEIVER = 1;
+  CODEVERIFICATION = 2;
+  NONE = 3;
+}
+
+enum Usage {
+  REUSABLE = 0;
+  SINGLEUSE = 1;
+}
+
+message CreateSourceReq {
+  // The type of the source to create. Required unless customer and original_source are specified
+  string type = 1;
+  // Optional. Amount associated with the source. This is the amount for which the source will be
+  // chargeable once ready. Required for single_use sources. Not supported for receiver type
+  // sources, where charge amount may not be specified until funds land.
+  uint32 amount = 2;
+  // Optional
+  string currency = 3;
+  // Optional. Info about the owner of the payment instrument that may be used or required by particular source types.
+  Owner owner = 4;
+  // Extra information about a source. This will appear on your customer’s statement every time you charge the source.
+  // As an example, if your website is RunClub and the item you’re charging for is a race ticket,
+  // you may want to specify a statementDescriptor of RunClub 5K race ticket.
+  // While many payment types will display this information, some may not display it at all.
+  string statementDescriptor = 5;
+  // The authentication flow of the source. flow is one of redirect, receiver, codeVerification, none.
+  Flow flow = 6;
+  // Optional. Information related to the receiver flow. Present if the source is a receiver (flow is receiver).
+  Receiver receiver = 7;
+  // Optional. Either reusable or single_use. Whether this source should be reusable or not.
+  // Some source types may or may not be reusable by construction, while others may leave the option
+  // at creation. If an incompatible value is passed, an error will be returned.
+  Usage usage = 8;
+  message Response {
+    Source source = 1;
+  }
+}
+
+message UpdateSourceReq {
+  // Id of the Source for which update request is being called.
+  string sourceId = 1;
+  // Optional. Amount associated with the source.
+  uint32 amount = 2;
+  // Optional. Information about the owner of the payment instrument that may be used or required by particular source types.
+  Owner owner = 3;
+  message Response {
+    Source source = 1;
+  }
+}
+
+message SourceId {
+  // unique source ID from a source creation request
+  string id = 1;
+  message Response {
+    Source source = 1;
+  }
+}
+
+message AttachOrDetachReq {
+  // Id of the Source for which attach/detach request is being called.
+  string sourceId = 1;
+  // unique customer ID
+  string customerId = 2;
+  message Response {
+    Source source = 1;
+  }
+}
+
+message Source {
+  string id = 1;
+  // A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1,
+  // Japanese Yen being a zero-decimal currency) representing the total amount associated with the
+  // source. This is the amount for which the source will be chargeable once ready. Required for single_use sources.
+  uint32 amount = 2;
+  // The client secret of the source. Used for client-side retrieval using a publishable key.
+  string clientSecret = 3;
+  // Time at which the object was created. Measured in seconds since the Unix epoch.
+  uint64 created = 4;
+  // Three-letter ISO code for the currency associated with the source. This is the currency for
+  // which the source will be chargeable once ready. Required for single_use sources.
+  string currency = 5;
+  // The authentication flow of the source. flow is one of redirect, receiver, codeVerification, none.
+  Flow flow = 6;
+  // Information about the owner of the payment instrument that may be used or required by particular source types.
+  Owner owner = 7;
+  // Information related to the receiver flow. Present if the source is a receiver (flow is receiver).
+  Receiver receiver = 8;
+  // Extra information about a source. This will appear on your customer’s statement every time you charge the source.
+  string statementDescriptor = 9;
+  enum Status {
+    CANCELLED = 0;
+    CHARGEABLE = 1;
+    CONSUMED = 2;
+    FAILED = 3;
+    PENDING = 4;
+  }
+  // The status of the source, one of canceled, chargeable, consumed, failed, or pending. Only
+  // chargeable sources can be used to create a charge.
+  Status status = 10;
+  // The type of the source. The type is a payment method, one of achCreditTransfer, card etc.
+  // An additional hash is included on the source with a name matching this value.
+  // It contains additional information specific to the payment method used.
+  string type = 11;
+  // Either reusable or single_use. Whether this source should be reusable or not.
+  // Some source types may or may not be reusable by construction, while others may leave the option
+  // at creation. If an incompatible value is passed, an error will be returned.
+  Usage usage = 12;
+}
+
+message CreateChargeReq {
+  //Required. Amount intended to be collected by this payment. A positive integer representing how
+  // much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge
+  // ¥100, a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency.
+  //The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
+  uint32 amount = 1;
+  // Required. Three-letter ISO currency code, in lowercase.
+  string currency = 2;
+  // Optional
+  string customerId = 3;
+  // optional. An arbitrary string which you can attach to a Charge object. It is displayed when
+  // in the web interface alongside the charge. Note that if you use Stripe to send automatic email
+  // receipts to your customers, your receipt emails will include the description of the charge(s)
+  // that they are describing.
+  string description = 4;
+  // Optional. The email address to which this charge’s receipt will be sent. The receipt will not
+  // be sent until the charge is paid, and no receipts will be sent for test mode charges. If this
+  // charge is for a Customer, the email address specified here will override the customer’s email
+  // address. If receiptEmail is specified for a charge in live mode, a receipt will be sent
+  // regardless of your email settings.
+  string receiptEmail = 5;
+  // Optional. A payment source to be charged. This can be the ID of a card (i.e., credit or debit
+  // card), a bank account, a source, a token, or a connected account. For certain sources—namely,
+  //cards, bank accounts, and attached sources—you must also pass the ID of the associated customer.
+  string sourceId = 6;
+  // Optional. For card charges
+  string statementDescriptor = 7;
+  message Response {
+    Charge charge = 1;
+  }
+}
+
+message UpdateChargeReq {
+  // Id of the Charge for which update request is being called.
+  string chargeId = 1;
+  // Optional. The ID of an existing customer that will be associated with this request.
+  // This field may only be updated if there is no existing associated customer with this charge.
+  string customerId = 2;
+  // Optional. An arbitrary string which you can attach to a Charge object. It is displayed when
+  // in the web interface alongside the charge. Note that if you use Stripe to send automatic email
+  // receipts to your customers, your receipt emails will include the description of the charge(s)
+  // that they are describing.
+  string description = 3;
+  // Optional. The email address to which this charge’s receipt will be sent. The receipt will not
+  // be sent until the charge is paid, and no receipts will be sent for test mode charges. If this
+  // charge is for a Customer, the email address specified here will override the customer’s email
+  // address. If receiptEmail is specified for a charge in live mode, a receipt will be sent
+  // regardless of your email settings.
+  string receiptEmail = 4;
+  message Response {
+    Charge charge = 1;
+  }
+}
+
+message CaptureChargeReq {
+  // Id of the Charge for which capture request is being called.
+  string chargeId = 1;
+  // Optional. Amount intended to be collected by this payment. A positive integer representing how
+  // much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge
+  // ¥100, a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency.
+  //The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
+  uint32 amount = 2;
+  // Optional. The email address to which this charge’s receipt will be sent. The receipt will not
+  // be sent until the charge is paid, and no receipts will be sent for test mode charges. If this
+  // charge is for a Customer, the email address specified here will override the customer’s email
+  // address. If receiptEmail is specified for a charge in live mode, a receipt will be sent
+  // regardless of your email settings.
+  string receiptEmail = 3;
+  // Optional
+  string statementDescriptor = 4;
+  message Response {
+    Charge charge = 1;
+  }
+}
+
+message ChargeId {
+  // unique charge ID from a charge creation request
+  string id = 1;
+  message Response {
+    Charge charge = 1;
+  }
+}
+
+message CustomerId {
+  // unique customer ID
+  string id = 1;
+  message Response {
+    repeated Charge charge = 1;
+  }
+}
+
+message Charge {
+  // Unique identifier for the object.
+  string id = 1;
+  //positive integer or zero
+  //Amount intended to be collected by this payment. A positive integer representing how much to
+  // charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100,
+  // a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency.
+  // The amount value supports up to eight digits
+  // (e.g., a value of 99999999 for a USD charge of $999,999.99).
+  uint32 amount = 2;
+  // positive integer or zero. Amount in paise captured (can be less than the amount attribute on
+  // the charge if a partial capture was made).
+  uint32 amountCaptured = 3;
+  // positive integer or zero. Amount in paise refunded
+  // (can be less than the amount attribute on the charge if a partial refund was issued).
+  uint32 amountRefunded = 4;
+  // ID of the balance transaction that describes the impact of this charge on your account balance
+  // (not including refunds or disputes).
+  string balanceTransactionId = 5;
+  // Billing information associated with the payment method at the time of the transaction.
+  BillingDetails billingDetails = 6;
+  // The full statement descriptor that is passed to card networks, and that is displayed
+  // on your customers’ credit card and bank statements. Allows you to see what the
+  // statement descriptor looks like after the static and dynamic portions are combined.
+  string calculatedStatementDescriptor = 7;
+  // If the charge was created without capturing, this Boolean represents
+  // whether it is still uncaptured or has since been captured.
+  bool captured = 8;
+  // Time at which the object was created. Measured in seconds since the Unix epoch.
+  uint64 created = 9;
+  // Three-letter ISO currency code
+  string currency = 10;
+  //ID of the customer this charge is for if one exists.
+  string customerId = 11;
+  // A string attached to the object for displaying to users.
+  string description = 12;
+  // Whether the charge has been disputed.
+  bool disputed = 13;
+  // Error code of the failure.
+  uint32 failureCode = 14;
+  // Description of the failure. May state the reason if available.
+  string failureMessage = 15;
+  // ID of the invoice this charge is for if one exists.
+  string invoiceId = 16;
+  // ID of the order this charge is for if one exists.
+  string orderId = 17;
+  // Boolean value represents if the charge succeeded, or was successfully authorized for later capture, or not.
+  bool paid = 18;
+  // ID of the payment method used in this charge.
+  string paymentMethodId = 19;
+  // Details about the payment method at the time of the transaction.
+  PaymentMethodDetails paymentMethodDetails = 20;
+  // Email where receipt of the charge would be sent.
+  string receiptEmail = 21;
+  // It represents the transaction number in charge receipt that sent over email.
+  // It should be remain null until a charge receipt is sent.
+  string receiptNumber = 22;
+  // Boolean field represents whether charge refunded or not.
+  bool refunded = 23;
+  // A list of refunds that have been applied to the charge.
+  repeated Refund refunds = 24;
+  // For card charges
+  string statementDescriptor = 25;
+  enum Status {
+    SUCCEEDED = 0;
+    PENDING = 1;
+    FAILED = 2;
+  }
+  // The status of the payment is either succeeded, pending, or failed
+  Status status = 26;
+  string sourceId = 27;
+}
+
+service ChargeService {
+  // Creates a new charge object.
+  rpc Create(CreateChargeReq) returns (CreateChargeReq.Response);
+  // Retrieves the charge object based on given charge ID that has previously been created.
+  rpc Retrieve(ChargeId) returns (ChargeId.Response);
+  // Updates charge object identified by given charge ID by setting the values of the parameters
+  // passed. Any parameters not provided will be left unchanged.
+  rpc Update(UpdateChargeReq) returns (UpdateChargeReq.Response);
+  // Captures the payment of an existing, uncaptured, charge. This
+  // is the step of payment workflow, where first you created a
+  // charge with the capture option set to false. Uncaptured
+  // payments expire exactly seven days after they are created.
+  // If they are not captured by that point in time, they will be
+  // marked as refunded and capture will no longer be allowed.
+  rpc Capture(CaptureChargeReq) returns (CaptureChargeReq.Response);
+  // Returns a list of charges
+  rpc RetrieveAll(CustomerId) returns (CustomerId.Response);
+}
+
+// It allows to add various payment sources (read methods) for customers.
+service SourceService {
+  // Creates a new source object.
+  rpc Create(CreateSourceReq) returns (CreateSourceReq.Response);
+  // Retrieves an existing source object.
+  rpc Retrieve(SourceId) returns (SourceId.Response);
+  // Updates the specified source by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+  rpc Update(UpdateSourceReq) returns (UpdateSourceReq.Response);
+  // Attaches a Source object to a Customer. The source must be in a chargeable or pending state.
+  rpc Attach(AttachOrDetachReq) returns (AttachOrDetachReq.Response);
+  // Detaches a Source object from a Customer. The status of a source is changed to consumed when it is detached and it can no longer be used to create a charge.
+  rpc Detach(AttachOrDetachReq) returns (AttachOrDetachReq.Response);
+}

@@ -1,5 +1,6 @@
 package com.packt.modern.api.server.repository;
 
+import com.google.protobuf.Any;
 import com.google.rpc.Code;
 import com.packt.modern.api.grpc.v1.Address;
 import com.packt.modern.api.grpc.v1.AttachOrDetachReq;
@@ -29,14 +30,18 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import org.apache.logging.log4j.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : chapter11-server - Modern API Development with Spring and Spring Boot
+ * @project : Chapter12-server - Modern API Development with Spring and Spring Boot
  **/
 @Component
 public class DbStore {
+
+  private final Logger LOG = LoggerFactory.getLogger(getClass());
 
   private static final Map<String, Source> sourceEntities = new ConcurrentHashMap<>();
   private static final Map<String, Charge> chargeEntities = new ConcurrentHashMap<>();
@@ -59,6 +64,7 @@ public class DbStore {
   }
 
   public CreateSourceReq.Response createSource(CreateSourceReq req) {
+    LOG.info("Request for creating new Source: {}", req);
     // validate request object
     // Owner and receiver should be taken from req. in the form of ID
     Source source = Source.newBuilder().setId(RandomHolder.randomKey()).setType(req.getType())
@@ -85,11 +91,13 @@ public class DbStore {
   }
 
   public SourceId.Response retrieveSource(String sourceId) {
+    LOG.info("Request for retrieving source with : {}", sourceId);
     if (Strings.isBlank(sourceId)) {
       com.google.rpc.Status status = com.google.rpc.Status.newBuilder()
           .setCode(Code.INVALID_ARGUMENT.getNumber())
           .setMessage("Invalid Source ID is passed.")
           .build();
+      LOG.error("Requested source ID {} not found.", sourceId);
       throw StatusProto.toStatusRuntimeException(status);
     }
     Source source = sourceEntities.get(sourceId);
@@ -99,6 +107,7 @@ public class DbStore {
           .setMessage("Requested source is not available")
           .addDetails(Any.pack(SourceId.Response.getDefaultInstance()))
           .build();
+      LOG.error("Requested {} is valid argument but not found in system.", sourceId);
       throw StatusProto.toStatusRuntimeException(status);
     }
     return SourceId.Response.newBuilder().setSource(source).build();
@@ -249,11 +258,13 @@ public class DbStore {
   }
 
   public CustomerId.Response retrieveAllCharges(String customerId) {
+    LOG.info("Request for retrieving charges with customer ID : {}", customerId);
     if (Strings.isBlank(customerId)) {
       com.google.rpc.Status status = com.google.rpc.Status.newBuilder()
           .setCode(Code.INVALID_ARGUMENT.getNumber())
           .setMessage("Requested customer ID is either null or empty")
           .build();
+      LOG.error("Invalid customer ID : {}", customerId);
       throw StatusProto.toStatusRuntimeException(status);
     }
     CustomerId.Response.Builder builder = CustomerId.Response.newBuilder();

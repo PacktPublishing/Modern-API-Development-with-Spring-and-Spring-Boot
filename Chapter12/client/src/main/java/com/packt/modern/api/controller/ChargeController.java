@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter11 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter12 - Modern API Development with Spring and Spring Boot
  **/
 @RestController
 public class ChargeController {
