@@ -1,0 +1,41 @@
+type Query {
+  products(filter: ProductCriteria): [Product]!
+  product(id: ID!): Product
+}
+
+type Mutation {
+  addTag(productId: ID!, tags: [TagInput!]!): Product
+  addQuantity(productId: ID!, quantity: Int!): Product
+}
+
+type Subscription {
+  quantityChanged(productId: ID!): Product
+}
+
+type Product {
+  id: String
+  name: String
+  description: String
+  imageUrl: String
+  price: BigDecimal
+  count: Int
+  tags: [Tag]
+}
+
+input ProductCriteria {
+  tags: [TagInput] = []
+  name: String = ""
+  page: Int = 1
+  size: Int = 10
+}
+
+input TagInput {
+  name: String
+}
+
+type Tag {
+  id: String
+  name: String
+}
+
+scalar BigDecimal
