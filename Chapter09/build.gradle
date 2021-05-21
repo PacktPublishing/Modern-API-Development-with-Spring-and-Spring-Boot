@@ -100,6 +100,8 @@ jacocoTestCoverageVerification {
 
 bootBuildImage {
     imageName = "192.168.80.1:5000/${project.name}:${project.version}"
+    // Paketo removes 6 months Java release supports, therefore better to use Java 17
+    environment = ["BP_JVM_VERSION" : "16"]
 }
 
 repositories {
