@@ -41,7 +41,7 @@ private ProductService productService;
 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-14).
 ### Software and Hardware List
-| Chapter | Software required | OS required |
+| No | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
 | 1  | Java 15 | Windows, Mac OS X, and Linux (Any) |
 | 2 | Java IDE such as IntelliJ or Eclipse | Windows, Mac OS X, and Linux (Any) |
