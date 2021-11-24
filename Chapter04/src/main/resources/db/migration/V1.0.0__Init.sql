@@ -153,8 +153,7 @@ create TABLE IF NOT EXISTS ecomm.orders (
 	FOREIGN KEY(payment_id)
 		REFERENCES ecomm.payment(id),
   FOREIGN KEY(shipment_id)
-		REFERENCES ecomm.shipment(id),
-	PRIMARY KEY(id)
+		REFERENCES ecomm.shipment(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.item (
