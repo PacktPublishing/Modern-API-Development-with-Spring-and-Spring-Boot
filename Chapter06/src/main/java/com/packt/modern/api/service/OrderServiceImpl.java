@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
 
   private OrderRepository repository;
-  private OrderRepository userRepo;
+  private UserRepository userRepo;
 
   public OrderServiceImpl(OrderRepository repository) {
     this.repository = repository;
