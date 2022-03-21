@@ -59,7 +59,7 @@ public class CartServiceImpl implements CartService {
     AtomicBoolean itemExists = new AtomicBoolean(false);
     items.forEach(i -> {
       if (i.getProduct().getId().equals(UUID.fromString(item.getId()))) {
-        i.setQuantity(item.getQuantity()).setPrice(i.getPrice());
+        i.setQuantity(item.getQuantity()).setPrice(i.getPrice()); // This is still the same price... I mean why then ?
         itemExists.set(true);
       }
     });
