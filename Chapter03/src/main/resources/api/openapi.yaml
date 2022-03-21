@@ -36,7 +36,8 @@ tags:
     description: Operations about shippings
   - name: product
     description: Operations about products
-
+  - name: card 
+    description: card operation 
 
 paths:
   /api/v1/carts/{customerId}:
@@ -567,8 +568,8 @@ paths:
     post:
       tags:
         - card
-      summary: Creates a new user addresses
-      description: Creates a new user addresses. Does nothing if address already exists.
+      summary: Creates a  new card 
+      description: Creates a new card. or replaces the existing one 
       operationId: registerCard
       requestBody:
         content:
@@ -584,10 +585,10 @@ paths:
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Address'
+                $ref: '#/components/schemas/Card'
             application/json:
               schema:
-                $ref: '#/components/schemas/Address'
+                $ref: '#/components/schemas/Card'
   /api/v1/cards/{id}:
     get:
       tags:
