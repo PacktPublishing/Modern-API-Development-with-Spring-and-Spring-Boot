@@ -61,6 +61,12 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * Hands-On Full Stack Development with Spring Boot 2 and React - Second Edition [[Packt]](https://www.packtpub.com/product/hands-on-full-stack-development-with-spring-boot-2-and-react-second-edition/9781838822361?utm_source=github&utm_medium=repository&utm_campaign=9781838822361) [[Amazon]](https://www.amazon.com/dp/B07S6F7YL3)
 
+## Errata 
+ * Page 328 (paragraph 3 , line 1):  **The host name is import when you're using the containers. Therefore, we'll use the IP number instead of the local hostname for the registry host** _should be_ **The host name is necessarywhen you're using the containers. Therefore, you'll use the IP number instead of the local hostname for the registry host**
+ *  Page 269 (bullet 1 , line 1):  **The login operation sets the access token, refresh token, user ID, and username in the responseToken key of the local storage by using the state arguments passed by the App component.** _should be_ **The login operation sets the access token, refresh token, user ID, and username in the tokenResponse key of the local storage by using the state arguments passed by the App component.**
+ 
+
+
 ## Get to Know the Author
 **Sourabh Sharma** works at Oracle as a lead technical member where he is responsible for developing and designing the key components of the blueprint solutions that are used by various Oracle products. He has over 18 years of experience delivering enterprise products and applications for leading companies. His expertise lies in conceptualizing, modeling, designing, and developing N-tier and cloud-based web applications as well as leading teams. He has vast experience in developing microservice-based solutions and implementing various types of workflow and orchestration engines. Sourabh believes in continuous learning and sharing knowledge through his books and training.
 
